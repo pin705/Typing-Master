@@ -1,0 +1,132 @@
+import { ref, computed } from 'vue'
+
+export interface TypingStats {
+    wpm: number
+    accuracy: number
+    timeRemaining: number
+    totalChars: number
+    correctChars: number
+    incorrectChars: number
+}
+
+export const useTyping = (initialTime: number = 60) => {
+    const targetText = ref('')
+    const userInput = ref('')
+    const isRunning = ref(false)
+    const isFinished = ref(false)
+    const duration = ref(initialTime)
+    const timeRemaining = ref(initialTime)
+    const timer = ref<ReturnType<typeof setInterval> | null>(null)
+
+    // Stats
+    const startTime = ref<number | null>(null)
+    const correctChars = ref(0)
+    const incorrectChars = ref(0)
+
+    const setText = (text: string) => {
+        targetText.value = text
+        reset()
+    }
+
+    const setDuration = (newDuration: number) => {
+        duration.value = newDuration
+        reset()
+    }
+
+    const start = () => {
+        if (isRunning.value || isFinished.value) return
+        isRunning.value = true
+        startTime.value = Date.now()
+
+        timer.value = setInterval(() => {
+            if (timeRemaining.value > 0) {
+                timeRemaining.value--
+            } else {
+                finish()
+            }
+        }, 1000)
+    }
+
+    const finish = () => {
+        if (timer.value) clearInterval(timer.value)
+        isRunning.value = false
+        isFinished.value = true
+    }
+
+    const reset = () => {
+        if (timer.value) clearInterval(timer.value)
+        userInput.value = ''
+        isRunning.value = false
+        isFinished.value = false
+        timeRemaining.value = duration.value
+        correctChars.value = 0
+        incorrectChars.value = 0
+        startTime.value = null
+    }
+
+    const handleInput = (char: string) => {
+        if (isFinished.value) return
+        if (!isRunning.value) start()
+
+        // Handle backspace
+        if (char === 'Backspace') {
+            userInput.value = userInput.value.slice(0, -1)
+            return
+        }
+
+        // Ignore other special keys
+        if (char.length > 1) return
+
+        // Limit input length to target text length
+        if (userInput.value.length >= targetText.value.length) return
+
+        userInput.value += char
+    }
+
+    const stats = computed<TypingStats>(() => {
+        const totalTyped = userInput.value.length
+
+        // Calculate accuracy
+        let correct = 0
+        let incorrect = 0
+        for (let i = 0; i < totalTyped; i++) {
+            if (userInput.value[i] === targetText.value[i]) {
+                correct++
+            } else {
+                incorrect++
+            }
+        }
+
+        const accuracy = totalTyped > 0 ? Math.round((correct / totalTyped) * 100) : 100
+
+        // Calculate WPM
+        // Standard WPM = (all typed / 5) / time in minutes
+        const timeElapsed = duration.value - timeRemaining.value
+        const wpm = timeElapsed > 0
+            ? Math.round((totalTyped / 5) / (timeElapsed / 60))
+            : 0
+
+        return {
+            wpm,
+            accuracy,
+            timeRemaining: timeRemaining.value,
+            totalChars: totalTyped,
+            correctChars: correct,
+            incorrectChars: incorrect
+        }
+    })
+
+
+    return {
+        targetText,
+        userInput,
+        isRunning,
+        isFinished,
+        stats,
+        setText,
+        start,
+        reset,
+        handleInput,
+        setDuration
+    }
+}
