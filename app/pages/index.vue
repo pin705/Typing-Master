@@ -13,6 +13,9 @@ const {
   userInput, 
   stats, 
   isRunning, 
+  isFinished,
+  activeKey,
+  pressedKey,
   setText, 
   handleInput, 
   reset,
@@ -57,26 +60,46 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <!-- Stats -->
-    <StatsDisplay :stats="stats" />
+  <div class="min-h-screen flex flex-col" :class="settings.nightMode ? 'bg-gray-900' : 'bg-gray-50'">
+    <div class="container mx-auto px-4 py-8 flex-1 flex flex-col max-w-5xl">
+      <!-- Header / Stats -->
+      <StatsDisplay :stats="stats" />
 
-    <!-- Typing Area -->
-    <TypingArea 
-      :target-text="targetText"
-      :user-input="userInput"
-      :settings="settings"
-      @input="handleInput"
-    />
+      <!-- Main Content Area -->
+      <div class="flex-1 flex flex-col gap-8">
+        <!-- Typing Area -->
+        <TypingArea 
+          :target-text="targetText"
+          :user-input="userInput"
+          :settings="settings"
+          @input="handleInput"
+        />
 
-    <!-- Controls -->
-    <ControlPanel 
-      :is-running="isRunning"
-      :selected-time="selectedTime"
+        <!-- Virtual Keyboard -->
+        <div class="hidden md:block">
+          <VirtualKeyboard 
+            :active-key="activeKey"
+            :pressed-key="pressedKey"
+          />
+        </div>
+
+        <!-- Controls -->
+        <ControlPanel 
+          :is-running="isRunning"
+          :selected-time="selectedTime"
+          @restart="handleRestart"
+          @change-time="handleChangeTime"
+          @change-article="handleChangeArticle"
+          @toggle-setting="handleToggleSetting"
+        />
+      </div>
+    </div>
+
+    <!-- Results Modal -->
+    <ResultsModal 
+      :stats="stats"
+      :is-open="isFinished"
       @restart="handleRestart"
-      @change-time="handleChangeTime"
-      @change-article="handleChangeArticle"
-      @toggle-setting="handleToggleSetting"
     />
   </div>
 </template>
