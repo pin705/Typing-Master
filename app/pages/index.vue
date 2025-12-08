@@ -117,13 +117,13 @@ onMounted(() => {
 
 <template>
   <div
-    class="min-h-screen flex flex-col"
-    :class="settings.nightMode ? 'bg-gray-900' : 'bg-gray-50'"
+    class="min-h-screen flex flex-col transition-colors duration-300"
+    :class="settings.nightMode ? 'bg-gray-900' : 'bg-gradient-to-br from-gray-50 via-blue-50/30 to-purple-50/30'"
   >
     <div class="container mx-auto px-4 py-8 flex-1 max-w-7xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <!-- Main Content -->
-        <div class="lg:col-span-8 flex flex-col gap-8">
+        <div class="lg:col-span-8 flex flex-col gap-6">
           <!-- Header / Stats -->
           <StatsDisplay :stats="stats" />
 
@@ -155,21 +155,24 @@ onMounted(() => {
         </div>
 
         <!-- Sidebar -->
-        <div class="lg:col-span-4">
+        <div class="lg:col-span-4 flex flex-col gap-6">
           <Leaderboard ref="leaderboardRef" />
 
-          <!-- Ad placeholder or extra info could go here -->
-          <div class="mt-8 p-6 bg-white rounded-xl shadow-sm border border-gray-100 text-center">
-            <h3 class="font-bold text-gray-800 mb-2">
+          <!-- Daily Challenge Card -->
+          <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 text-center">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
+              <span class="i-heroicons-star text-2xl text-purple-600"></span>
+            </div>
+            <h3 class="font-bold text-gray-800 mb-2 text-lg">
               Daily Challenge
             </h3>
-            <p class="text-sm text-gray-500 mb-4">
+            <p class="text-sm text-gray-600 mb-4 leading-relaxed">
               Complete 3 tests with > 95% accuracy to win a badge!
             </p>
-            <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
-              <div class="w-1/3 h-full bg-primary-500" />
+            <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden mb-2">
+              <div class="w-1/3 h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500" />
             </div>
-            <p class="text-xs text-gray-400 mt-2">
+            <p class="text-xs text-gray-500 font-medium">
               1/3 Completed
             </p>
           </div>
