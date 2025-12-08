@@ -16,11 +16,24 @@ A modern, feature-rich typing practice application built with **Nuxt 3** and **T
     - 🛤️ **Show Trace**: Highlight your typing progress.
 - **Detailed Results**: Comprehensive summary of your performance after each session.
 
-### New Features (Phase 1)
-- **User Authentication**: Register and login with email/password
-- **User Profiles**: Personal statistics dashboard with historical performance tracking
-- **Leaderboard**: Compete with other users and track your progress
-- **Multi-language Support**: English, Vietnamese, and Chinese
+### Phase 1 Features (✅ COMPLETED)
+- **User Authentication**: 
+  - ✅ Register and login with email/password
+  - ✅ Secure session management
+  - ✅ Password validation and hashing
+  - 📋 OAuth (Google, GitHub) - Coming in Phase 1.5
+- **User Profiles**: 
+  - ✅ Personal statistics dashboard
+  - ✅ Historical performance tracking (last 10 tests)
+  - ✅ Profile editing (username, bio)
+  - ✅ Avatar initials display
+- **Enhanced Leaderboard**: 
+  - ✅ Compete with other users
+  - ✅ Track your global ranking
+  - ✅ Highlight your personal scores
+- **Multi-language Support**: 
+  - ✅ English, Vietnamese, and Chinese interfaces
+  - ✅ Language-specific typing content
 
 ## Tech Stack
 
@@ -115,6 +128,15 @@ Typing-Master/
 ## Development Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for the complete development roadmap and planned features.
+
+### Current Phase Status
+- ✅ **Phase 1 (Q1 2026)**: User Authentication & Profiles - **COMPLETED**
+- 🔄 **Phase 1.5 (Q1 2026)**: OAuth, Password Reset, Email Verification - **IN PROGRESS**
+- 📋 **Phase 2 (Q2 2026)**: Enhanced Typing Experience - **PLANNED**
+- 📋 **Phase 3 (Q3 2026)**: Social Features - **PLANNED**
+- 📋 **Phase 4 (Q4 2026)**: Personalization & AI - **PLANNED**
+- 📋 **Phase 5 (Q1 2027)**: Mobile & Accessibility - **PLANNED**
+- 📋 **Phase 6 (Q2 2027)**: Enterprise & Education - **PLANNED**
 
 ## Contributing
 

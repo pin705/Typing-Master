@@ -438,12 +438,14 @@ We welcome contributions from the community! Here's how you can help:
 
 ## Support & Community
 
-- 📧 Email: [support email here]
-- 💬 Discord: [Discord server invite]
-- 🐦 Twitter: [@TypingMaster]
-- 📺 YouTube: [Tutorial channel]
-- 📝 Blog: [Dev blog URL]
-- 📚 Documentation: [Docs site]
+- 📧 Email: [Contact form - Coming soon]
+- 💬 Discord: [Community server - Coming soon]
+- 🐦 Twitter: [@TypingMaster - TBD]
+- 📺 YouTube: [Tutorial channel - TBD]
+- 📝 Blog: [Development blog - TBD]
+- 📚 Documentation: [Comprehensive docs - In development]
+- 🐛 Issues: [GitHub Issues](https://github.com/pin705/Typing-Master/issues)
+- 💡 Discussions: [GitHub Discussions](https://github.com/pin705/Typing-Master/discussions)
 
 ---
 *This roadmap is a living document and will be updated regularly to reflect the current state and future plans of the project.*
