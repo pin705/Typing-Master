@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import { articles } from '~/data/articles'
 import { generateGuestUsername, getStoredUsername, setStoredUsername, hasCompletedSetup, markSetupCompleted } from '~/utils/username'
 
@@ -113,24 +113,26 @@ const handleChangeTime = (time: number) => {
   setDuration(time)
 }
 
-const handleSetupConfirm = (name: string) => {
+const handleSetupConfirm = async (name: string) => {
   username.value = name
   setStoredUsername(name)
   markSetupCompleted()
   isSetupModalOpen.value = false
+  await nextTick()
   leaderboardRef.value?.setCurrentUser(name)
 }
 
-const handleSetupSkip = () => {
+const handleSetupSkip = async () => {
   const guestName = generateGuestUsername()
   username.value = guestName
   setStoredUsername(guestName)
   markSetupCompleted()
   isSetupModalOpen.value = false
+  await nextTick()
   leaderboardRef.value?.setCurrentUser(guestName)
 }
 
-onMounted(() => {
+onMounted(async () => {
   if (articles[0]) {
     setText(articles[0].content)
   }
@@ -141,6 +143,7 @@ onMounted(() => {
       const storedUsername = getStoredUsername()
       if (storedUsername) {
         username.value = storedUsername
+        await nextTick()
         leaderboardRef.value?.setCurrentUser(storedUsername)
       }
     } else {

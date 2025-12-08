@@ -1,5 +1,6 @@
 export function generateGuestUsername(): string {
-  return 'Guest ' + Math.floor(Math.random() * 1000)
+  const timestamp = Date.now().toString().slice(-6)
+  return `Guest${timestamp}`
 }
 
 export function getStoredUsername(): string | null {
