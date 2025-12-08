@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { generateGuestUsername } from '~/utils/username'
 
 defineProps<{
   isOpen: boolean
@@ -14,7 +15,7 @@ const { t } = useI18n()
 const username = ref('')
 
 const handleConfirm = () => {
-  const finalUsername = username.value.trim() || 'Guest ' + Math.floor(Math.random() * 1000)
+  const finalUsername = username.value.trim() || generateGuestUsername()
   emit('confirm', finalUsername)
 }
 </script>

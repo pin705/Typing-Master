@@ -30,11 +30,15 @@ const fetchScores = async () => {
   }
 }
 
+const setCurrentUser = (name: string) => {
+  currentUsername.value = name
+}
+
 onMounted(() => {
   fetchScores()
 })
 
-defineExpose({ refresh: fetchScores, setCurrentUser: (name: string) => { currentUsername.value = name } })
+defineExpose({ refresh: fetchScores, setCurrentUser })
 </script>
 
 <template>
