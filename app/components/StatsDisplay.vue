@@ -27,8 +27,14 @@ const { t } = useI18n()
 
     <div class="flex flex-col items-center bg-white rounded-xl shadow-sm border border-gray-100 px-8 py-4 min-w-[140px] transition-all hover:shadow-md hover:border-blue-100">
       <div class="flex items-baseline gap-1 mb-1">
-        <span class="text-5xl font-bold tabular-nums" :class="stats.accuracy >= 95 ? 'text-green-600' : stats.accuracy >= 80 ? 'text-yellow-600' : 'text-red-600'">{{ stats.accuracy }}</span>
-        <span class="text-lg font-medium" :class="stats.accuracy >= 95 ? 'text-green-400' : stats.accuracy >= 80 ? 'text-yellow-400' : 'text-red-400'">%</span>
+        <span
+          class="text-5xl font-bold tabular-nums"
+          :class="stats.accuracy >= 95 ? 'text-green-600' : stats.accuracy >= 80 ? 'text-yellow-600' : 'text-red-600'"
+        >{{ stats.accuracy }}</span>
+        <span
+          class="text-lg font-medium"
+          :class="stats.accuracy >= 95 ? 'text-green-400' : stats.accuracy >= 80 ? 'text-yellow-400' : 'text-red-400'"
+        >%</span>
       </div>
       <span class="text-xs text-gray-500 uppercase tracking-widest font-semibold">{{ t('stats.accuracy') }}</span>
     </div>

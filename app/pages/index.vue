@@ -136,7 +136,7 @@ onMounted(async () => {
   if (articles[0]) {
     setText(articles[0].content)
   }
-  
+
   // Check if user has completed setup before (client-side only)
   if (typeof window !== 'undefined') {
     if (hasCompletedSetup()) {
@@ -146,7 +146,8 @@ onMounted(async () => {
         await nextTick()
         leaderboardRef.value?.setCurrentUser(storedUsername)
       }
-    } else {
+    }
+    else {
       // Show setup modal for first-time users
       isSetupModalOpen.value = true
     }
@@ -200,7 +201,7 @@ onMounted(async () => {
           <!-- Daily Challenge Card -->
           <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-200 text-center">
             <div class="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
-              <span class="i-heroicons-star text-2xl text-purple-600"></span>
+              <span class="i-heroicons-star text-2xl text-purple-600" />
             </div>
             <h3 class="font-bold text-gray-800 mb-2 text-lg">
               {{ t('home.daily_challenge') }}

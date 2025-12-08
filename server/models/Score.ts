@@ -22,6 +22,6 @@ export const Score = defineMongooseModel({
     duration: {
       type: Number,
       required: true,
-    }
+    },
   },
 })

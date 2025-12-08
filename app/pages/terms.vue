@@ -4,7 +4,9 @@ const { t } = useI18n()
 
 <template>
   <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ t('footer.terms') }}</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">
+      {{ t('footer.terms') }}
+    </h1>
     <div class="prose prose-lg text-gray-600">
       <p>Last updated: December 8, 2025</p>
       <p>Please read these terms and conditions carefully before using Our Service.</p>

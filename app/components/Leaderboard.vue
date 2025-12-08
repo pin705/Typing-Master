@@ -52,7 +52,7 @@ defineExpose({ refresh: fetchScores, setCurrentUser })
         class="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1 transition-colors px-3 py-1.5 rounded-lg hover:bg-white/50"
         @click="fetchScores"
       >
-        <span class="i-heroicons-arrow-path text-base"></span>
+        <span class="i-heroicons-arrow-path text-base" />
         {{ t('common.refresh') }}
       </button>
     </div>
@@ -61,7 +61,7 @@ defineExpose({ refresh: fetchScores, setCurrentUser })
       v-if="loading"
       class="p-12 text-center text-gray-500 flex flex-col items-center gap-3"
     >
-      <span class="i-heroicons-arrow-path text-3xl animate-spin text-primary-500"></span>
+      <span class="i-heroicons-arrow-path text-3xl animate-spin text-primary-500" />
       <span>{{ t('common.loading') }}</span>
     </div>
 
@@ -69,25 +69,32 @@ defineExpose({ refresh: fetchScores, setCurrentUser })
       v-else-if="scores.length === 0"
       class="p-12 text-center text-gray-500 flex flex-col items-center gap-3"
     >
-      <span class="i-heroicons-trophy text-4xl text-gray-300"></span>
+      <span class="i-heroicons-trophy text-4xl text-gray-300" />
       <div>
-        <p class="font-medium text-gray-700">{{ t('leaderboard.no_scores') }}</p>
-        <p class="text-sm">{{ t('leaderboard.be_first') }}</p>
+        <p class="font-medium text-gray-700">
+          {{ t('leaderboard.no_scores') }}
+        </p>
+        <p class="text-sm">
+          {{ t('leaderboard.be_first') }}
+        </p>
       </div>
     </div>
 
-    <div v-else class="divide-y divide-gray-100">
+    <div
+      v-else
+      class="divide-y divide-gray-100"
+    >
       <div
         v-for="(score, index) in scores"
         :key="score._id"
         class="p-4 hover:bg-gray-50 transition-all duration-200"
         :class="[
           index < 3 ? 'bg-gradient-to-r' : '',
-          score.username === currentUsername ? 'ring-2 ring-primary-500 bg-primary-50/30' : ''
+          score.username === currentUsername ? 'ring-2 ring-primary-500 bg-primary-50/30' : '',
         ]"
-        :style="index === 0 ? 'background: linear-gradient(to right, #fef3c7 0%, transparent 100%)' : 
-                index === 1 ? 'background: linear-gradient(to right, #f3f4f6 0%, transparent 100%)' : 
-                index === 2 ? 'background: linear-gradient(to right, #fed7aa 0%, transparent 100%)' : ''"
+        :style="index === 0 ? 'background: linear-gradient(to right, #fef3c7 0%, transparent 100%)'
+          : index === 1 ? 'background: linear-gradient(to right, #f3f4f6 0%, transparent 100%)'
+            : index === 2 ? 'background: linear-gradient(to right, #fed7aa 0%, transparent 100%)' : ''"
       >
         <div class="flex items-center gap-4">
           <!-- Rank Badge -->
@@ -114,25 +121,44 @@ defineExpose({ refresh: fetchScores, setCurrentUser })
 
           <!-- User Info -->
           <div class="flex-1 min-w-0">
-            <p class="font-semibold text-gray-900 truncate" :class="score.username === currentUsername ? 'text-primary-700 font-bold' : ''">
+            <p
+              class="font-semibold text-gray-900 truncate"
+              :class="score.username === currentUsername ? 'text-primary-700 font-bold' : ''"
+            >
               {{ score.username }}
-              <span v-if="score.username === currentUsername" class="ml-1 text-xs text-primary-600">(You)</span>
+              <span
+                v-if="score.username === currentUsername"
+                class="ml-1 text-xs text-primary-600"
+              >(You)</span>
             </p>
-            <p class="text-xs text-gray-500">{{ t('leaderboard.test_duration', { duration: score.duration }) }}</p>
+            <p class="text-xs text-gray-500">
+              {{ t('leaderboard.test_duration', { duration: score.duration }) }}
+            </p>
           </div>
 
           <!-- Stats -->
           <div class="flex items-center gap-4 text-right">
             <div>
-              <p class="text-lg font-bold text-primary-600 tabular-nums">{{ score.wpm }}</p>
-              <p class="text-xs text-gray-500 font-medium">{{ t('stats.wpm') }}</p>
+              <p class="text-lg font-bold text-primary-600 tabular-nums">
+                {{ score.wpm }}
+              </p>
+              <p class="text-xs text-gray-500 font-medium">
+                {{ t('stats.wpm') }}
+              </p>
             </div>
             <div>
-              <p class="text-sm font-semibold tabular-nums" :class="
-                score.accuracy >= 95 ? 'text-green-600' : 
-                score.accuracy >= 80 ? 'text-yellow-600' : 'text-gray-600'
-              ">{{ score.accuracy }}%</p>
-              <p class="text-xs text-gray-500 font-medium">{{ t('leaderboard.acc') }}</p>
+              <p
+                class="text-sm font-semibold tabular-nums"
+                :class="
+                  score.accuracy >= 95 ? 'text-green-600'
+                  : score.accuracy >= 80 ? 'text-yellow-600' : 'text-gray-600'
+                "
+              >
+                {{ score.accuracy }}%
+              </p>
+              <p class="text-xs text-gray-500 font-medium">
+                {{ t('leaderboard.acc') }}
+              </p>
             </div>
           </div>
         </div>
