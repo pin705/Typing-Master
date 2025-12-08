@@ -1,75 +1,71 @@
-# Nuxt Minimal Starter
+# Typing Master Clone
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A modern, feature-rich typing practice application built with **Nuxt 3** and **Tailwind CSS**, inspired by `dazi.kukuw.cn`.
 
-## Setup
+![Typing Master Preview](https://placehold.co/600x400?text=Typing+Master+Preview)
 
-Make sure to install dependencies:
+## Features
 
-```bash
-# npm
-npm install
+- **Real-time Statistics**: Track your Words Per Minute (WPM), Accuracy, and Time Remaining as you type.
+- **Virtual Keyboard**: Visual feedback for the active key and your key presses.
+- **Multiple Articles**: Choose from preset articles or try a random one.
+- **Customizable Settings**:
+    - 🌙 **Night Mode**: Easy on the eyes for late-night practice.
+    - 🔍 **Large Font**: Improved readability.
+    - 🛤️ **Show Trace**: Highlight your typing progress.
+- **Detailed Results**: Comprehensive summary of your performance after each session.
 
-# pnpm
-pnpm install
+## Tech Stack
 
-# yarn
-yarn install
+- **Framework**: [Nuxt 3](https://nuxt.com/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Nuxt UI / Heroicons](https://ui.nuxt.com/)
+- **State Management**: Vue Composition API (Refs & Composables)
 
-# bun
-bun install
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or later recommended)
+- npm, pnpm, or yarn
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd kukuw
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Project Structure
+
+```
+kukuw/
+├── app/
+│   ├── components/      # Vue components (TypingArea, VirtualKeyboard, etc.)
+│   ├── composables/     # Shared logic (useTyping.ts)
+│   ├── pages/           # Application routes
+│   └── app.vue          # Root component
+├── nuxt.config.ts       # Nuxt configuration
+└── tailwind.config.ts   # Tailwind configuration
 ```
 
-## Development Server
+## Contributing
 
-Start the development server on `http://localhost:3000`:
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-```bash
-# npm
-npm run dev
+## License
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+[MIT](LICENSE)
