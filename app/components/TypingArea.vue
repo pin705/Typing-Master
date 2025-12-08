@@ -4,6 +4,11 @@ import { onMounted, onUnmounted, ref } from 'vue'
 const props = defineProps<{
   targetText: string
   userInput: string
+  settings?: {
+    largeFont: boolean
+    showTrace: boolean
+    nightMode: boolean
+  }
 }>()
 
 const emit = defineEmits<{
@@ -45,11 +50,14 @@ const handleClick = () => {
 
 <template>
   <div 
-    class="relative w-full max-w-4xl mx-auto p-8 rounded-xl bg-white shadow-lg cursor-text min-h-[300px] border-2 transition-colors duration-200"
-    :class="isFocused ? 'border-primary-500 ring-2 ring-primary-100' : 'border-gray-200'"
+    class="relative w-full max-w-4xl mx-auto p-8 rounded-xl shadow-lg cursor-text min-h-[300px] border-2 transition-colors duration-200"
+    :class="[
+      isFocused ? 'border-primary-500 ring-2 ring-primary-100' : 'border-gray-200',
+      settings?.nightMode ? 'bg-gray-800 text-gray-100' : 'bg-white text-gray-900'
+    ]"
     @click="handleClick"
   >
-    <!-- Hidden input to capture focus and mobile keyboard -->
+    <!-- ... hidden input ... -->
     <input 
       ref="inputRef"
       type="text"
@@ -59,7 +67,10 @@ const handleClick = () => {
     />
 
     <!-- Text Display -->
-    <div class="font-mono text-2xl leading-relaxed break-words select-none">
+    <div 
+      class="font-mono leading-relaxed break-words select-none transition-all"
+      :class="settings?.largeFont ? 'text-3xl' : 'text-2xl'"
+    >
       <span 
         v-for="(char, index) in targetText" 
         :key="index"
@@ -67,8 +78,11 @@ const handleClick = () => {
         :class="{
           'text-green-600': index < userInput.length && userInput[index] === char,
           'text-red-500 bg-red-100': index < userInput.length && userInput[index] !== char,
-          'text-gray-400': index >= userInput.length,
-          'border-l-2 border-primary-500 animate-pulse': index === userInput.length && isFocused
+          'text-gray-400': index >= userInput.length && !settings?.nightMode,
+          'text-gray-500': index >= userInput.length && settings?.nightMode,
+          'border-l-2 border-primary-500 animate-pulse': index === userInput.length && isFocused,
+          'bg-gray-100': settings?.showTrace && index < userInput.length && !settings?.nightMode,
+          'bg-gray-700': settings?.showTrace && index < userInput.length && settings?.nightMode
         }"
       >
         {{ char }}
@@ -78,9 +92,10 @@ const handleClick = () => {
     <!-- Overlay when not focused -->
     <div 
       v-if="!isFocused" 
-      class="absolute inset-0 flex items-center justify-center bg-white/50 backdrop-blur-[1px] rounded-xl"
+      class="absolute inset-0 flex items-center justify-center backdrop-blur-[1px] rounded-xl"
+      :class="settings?.nightMode ? 'bg-gray-900/50' : 'bg-white/50'"
     >
-      <div class="text-gray-500 font-medium flex items-center gap-2">
+      <div class="font-medium flex items-center gap-2" :class="settings?.nightMode ? 'text-gray-300' : 'text-gray-500'">
         <span class="i-heroicons-cursor-arrow-rays text-xl"></span>
         Click here to start typing
       </div>

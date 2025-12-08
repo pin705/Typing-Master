@@ -64,9 +64,21 @@ export const useTyping = (initialTime: number = 60) => {
         startTime.value = null
     }
 
+    const activeKey = computed(() => {
+        if (isFinished.value || !targetText.value) return ''
+        const char = targetText.value[userInput.value.length]
+        if (!char) return ''
+        if (char === ' ') return 'Space'
+        return char
+    })
+
+    const pressedKey = ref('')
+
     const handleInput = (char: string) => {
         if (isFinished.value) return
         if (!isRunning.value) start()
+
+        pressedKey.value = char === ' ' ? 'Space' : char
 
         // Handle backspace
         if (char === 'Backspace') {
@@ -123,6 +135,8 @@ export const useTyping = (initialTime: number = 60) => {
         isRunning,
         isFinished,
         stats,
+        activeKey,
+        pressedKey,
         setText,
         start,
         reset,

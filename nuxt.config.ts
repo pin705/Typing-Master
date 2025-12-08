@@ -2,7 +2,12 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/eslint'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxt/eslint',
+    'nuxt-mongoose',
+    'nuxt-auth-utils'
+  ],
   eslint: {
     config: {
       stylistic: true // <---
@@ -12,4 +17,4 @@ export default defineNuxtConfig({
 
   }
 })
-// Force rebuild
+// Force rebuild 3
