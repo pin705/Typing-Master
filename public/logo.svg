@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" fill="#4F46E5" stroke="#3730A3" stroke-width="3"/>
+  
+  <!-- Keyboard icon -->
+  <g transform="translate(50, 60)">
+    <!-- Top row keys -->
+    <rect x="0" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="16" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="32" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="48" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="64" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="80" y="0" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    
+    <!-- Middle row keys -->
+    <rect x="0" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="16" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="32" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="48" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="64" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="80" y="16" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    
+    <!-- Bottom row keys -->
+    <rect x="0" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="16" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="32" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="48" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="64" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    <rect x="80" y="32" width="12" height="12" rx="2" fill="white" opacity="0.9"/>
+    
+    <!-- Spacebar -->
+    <rect x="16" y="48" width="60" height="12" rx="2" fill="white" opacity="0.9"/>
+    
+    <!-- Highlight active key (center) -->
+    <rect x="32" y="16" width="12" height="12" rx="2" fill="#FCD34D" stroke="#F59E0B" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="100" y="145" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle">TYPING</text>
+  <text x="100" y="170" font-family="Arial, sans-serif" font-size="20" font-weight="normal" fill="#E0E7FF" text-anchor="middle">Master</text>
+</svg>

@@ -20,7 +20,7 @@ const availableLocales = computed(() => {
     <div class="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
       <div class="flex items-center gap-8">
         <NuxtLink :to="localePath('/')" class="text-2xl font-bold flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors">
-          <span class="i-heroicons-keyboard text-3xl"></span>
+          <img src="/logo-small.svg" alt="Typing Master Logo" class="w-8 h-8">
           <span>Typing Master</span>
         </NuxtLink>
         
