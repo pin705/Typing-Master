@@ -8,6 +8,11 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vite-pwa/nuxt',
   ],
+  mongoose: {
+    uri: process.env.MONGODB_URI || '',
+    options: {},
+    devtools: true,
+  },
   devtools: { enabled: true },
   compatibilityDate: '2025-07-15',
   eslint: {
