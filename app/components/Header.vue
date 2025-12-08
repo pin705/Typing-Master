@@ -1,6 +1,17 @@
 <script setup lang="ts">
+interface Locale {
+  code: string
+  name: string
+  file?: string
+}
+
 const { t, locale, locales, setLocale } = useI18n()
 const localePath = useLocalePath()
+const { user, isAuthenticated, logout, fetchUser } = useAuth()
+
+const showAuthModal = ref(false)
+const authModalMode = ref<'login' | 'register'>('login')
+const showUserMenu = ref(false)
 
 const navItems = computed(() => [
   { label: t('nav.typing_test'), href: '/', active: true },
@@ -10,8 +21,19 @@ const navItems = computed(() => [
   { label: t('nav.speed_test'), href: '/speed-test' },
 ])
 
-const availableLocales = computed(() => {
-  return (locales.value as any[]).filter(i => i.code !== locale.value)
+const openAuthModal = (mode: 'login' | 'register') => {
+  authModalMode.value = mode
+  showAuthModal.value = true
+}
+
+const handleLogout = async () => {
+  showUserMenu.value = false
+  await logout()
+}
+
+// Fetch user on mount
+onMounted(() => {
+  fetchUser()
 })
 </script>
 
@@ -54,7 +76,7 @@ const availableLocales = computed(() => {
           <div class="absolute right-0 top-full pt-2 w-32 hidden group-hover:block z-50">
             <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-1">
               <button
-                v-for="l in locales"
+                v-for="l in (locales as Locale[])"
                 :key="l.code"
                 class="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700"
                 :class="{ 'text-primary-600 font-bold': l.code === locale }"
@@ -68,13 +90,64 @@ const availableLocales = computed(() => {
 
         <div class="h-4 w-px bg-gray-200" />
 
-        <button class="text-gray-600 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">
-          {{ t('nav.login') }}
-        </button>
-        <button class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium shadow-sm shadow-primary-200">
-          {{ t('nav.register') }}
-        </button>
+        <!-- Auth buttons / User menu -->
+        <template v-if="!isAuthenticated">
+          <button
+            class="text-gray-600 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
+            @click="openAuthModal('login')"
+          >
+            {{ t('nav.login') }}
+          </button>
+          <button
+            class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium shadow-sm shadow-primary-200"
+            @click="openAuthModal('register')"
+          >
+            {{ t('nav.register') }}
+          </button>
+        </template>
+        <template v-else>
+          <div class="relative">
+            <button
+              class="flex items-center gap-2 text-gray-700 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
+              @click="showUserMenu = !showUserMenu"
+            >
+              <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold">
+                {{ user?.username?.[0]?.toUpperCase() || 'U' }}
+              </div>
+              <span>{{ user?.username }}</span>
+              <span class="i-heroicons-chevron-down text-xs" />
+            </button>
+            <div
+              v-if="showUserMenu"
+              class="absolute right-0 top-full pt-2 w-48 z-50"
+            >
+              <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-1">
+                <NuxtLink
+                  :to="localePath('/profile')"
+                  class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700"
+                  @click="showUserMenu = false"
+                >
+                  Profile
+                </NuxtLink>
+                <button
+                  class="block w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700"
+                  @click="handleLogout"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
+
+    <!-- Auth Modal -->
+    <AuthModal
+      :is-open="showAuthModal"
+      :initial-mode="authModalMode"
+      @close="showAuthModal = false"
+      @success="showAuthModal = false"
+    />
   </header>
 </template>

@@ -31,6 +31,11 @@ export default defineNuxtConfig({
       redirectOn: 'root',
     },
   },
+  mongoose: {
+    uri: process.env.MONGODB_URI || '',
+    options: {},
+    devtools: true,
+  },
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
