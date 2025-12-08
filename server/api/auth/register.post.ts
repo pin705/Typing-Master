@@ -1,5 +1,7 @@
 import { User } from '~~/server/models/User'
 import { hashPassword, validateEmail, validatePassword, validateUsername } from '~~/server/utils/auth'
+import { sendVerificationEmail } from '~~/server/utils/email'
+import crypto from 'node:crypto'
 
 export default defineEventHandler(async (event) => {
   try {
@@ -61,13 +63,29 @@ export default defineEventHandler(async (event) => {
     // Hash password
     const hashedPassword = await hashPassword(password)
 
+    // Generate email verification token
+    const verificationToken = crypto.randomBytes(32).toString('hex')
+    const hashedToken = crypto.createHash('sha256').update(verificationToken).digest('hex')
+
     // Create new user
     const newUser = await User.create({
       email: email.toLowerCase(),
       username,
       password: hashedPassword,
       provider: 'local',
+      emailVerified: false,
+      emailVerificationToken: hashedToken,
+      emailVerificationExpires: new Date(Date.now() + 24 * 60 * 60 * 1000), // 24 hours
     })
+
+    // Send verification email (don't fail registration if email fails)
+    try {
+      await sendVerificationEmail(newUser.email, verificationToken)
+    }
+    catch (emailError) {
+      console.error('Failed to send verification email:', emailError)
+      // Continue with registration even if email fails
+    }
 
     // Set user session
     await setUserSession(event, {
@@ -86,6 +104,7 @@ export default defineEventHandler(async (event) => {
       username: newUser.username,
       avatar: newUser.avatar,
       createdAt: newUser.createdAt,
+      emailVerified: newUser.emailVerified,
     }
   }
   catch (error: unknown) {

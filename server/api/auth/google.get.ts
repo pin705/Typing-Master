@@ -33,6 +33,7 @@ export default oauthGoogleEventHandler({
             avatar: user.picture || '',
             provider: 'google',
             providerId: user.sub,
+            emailVerified: true, // OAuth users are pre-verified
             lastLoginAt: new Date(),
           })
         }

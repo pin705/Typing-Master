@@ -38,6 +38,18 @@ export const User = defineMongooseModel({
       type: String,
       default: '',
     },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
+    emailVerificationToken: {
+      type: String,
+      default: '',
+    },
+    emailVerificationExpires: {
+      type: Date,
+      default: null,
+    },
     lastLoginAt: {
       type: Date,
       default: Date.now,

@@ -33,6 +33,7 @@ export default oauthGitHubEventHandler({
             avatar: user.avatar_url || '',
             provider: 'github',
             providerId: user.id.toString(),
+            emailVerified: true, // OAuth users are pre-verified
             lastLoginAt: new Date(),
           })
         }
