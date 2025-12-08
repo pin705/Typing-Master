@@ -10,8 +10,18 @@
         class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
         @click="closeModal"
       >
-        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        <svg
+          class="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
         </svg>
       </button>
 
@@ -21,12 +31,18 @@
       </h2>
 
       <!-- Error message -->
-      <div v-if="error" class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-200">
+      <div
+        v-if="error"
+        class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-200"
+      >
         {{ error }}
       </div>
 
       <!-- Login form -->
-      <form v-if="mode === 'login'" @submit.prevent="handleLogin">
+      <form
+        v-if="mode === 'login'"
+        @submit.prevent="handleLogin"
+      >
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
           <input
@@ -57,7 +73,10 @@
       </form>
 
       <!-- Register form -->
-      <form v-else @submit.prevent="handleRegister">
+      <form
+        v-else
+        @submit.prevent="handleRegister"
+      >
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
           <input

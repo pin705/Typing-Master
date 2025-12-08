@@ -71,8 +71,8 @@ export default defineEventHandler(async (event) => {
       settings: user.settings,
     }
   }
-  catch (error: any) {
-    if (error.statusCode) {
+  catch (error: unknown) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
 

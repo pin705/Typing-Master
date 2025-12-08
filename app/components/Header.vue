@@ -1,4 +1,10 @@
 <script setup lang="ts">
+interface Locale {
+  code: string
+  name: string
+  file?: string
+}
+
 const { t, locale, locales, setLocale } = useI18n()
 const localePath = useLocalePath()
 const { user, isAuthenticated, logout, fetchUser } = useAuth()
@@ -14,10 +20,6 @@ const navItems = computed(() => [
   { label: t('nav.chinese_typing'), href: '/chinese-typing' },
   { label: t('nav.speed_test'), href: '/speed-test' },
 ])
-
-const availableLocales = computed(() => {
-  return (locales.value as any[]).filter(i => i.code !== locale.value)
-})
 
 const openAuthModal = (mode: 'login' | 'register') => {
   authModalMode.value = mode
@@ -74,7 +76,7 @@ onMounted(() => {
           <div class="absolute right-0 top-full pt-2 w-32 hidden group-hover:block z-50">
             <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-1">
               <button
-                v-for="l in locales"
+                v-for="l in (locales as Locale[])"
                 :key="l.code"
                 class="w-full text-left px-4 py-2 hover:bg-gray-50 text-gray-700"
                 :class="{ 'text-primary-600 font-bold': l.code === locale }"
@@ -90,13 +92,13 @@ onMounted(() => {
 
         <!-- Auth buttons / User menu -->
         <template v-if="!isAuthenticated">
-          <button 
+          <button
             class="text-gray-600 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-50"
             @click="openAuthModal('login')"
           >
             {{ t('nav.login') }}
           </button>
-          <button 
+          <button
             class="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700 transition-colors font-medium shadow-sm shadow-primary-200"
             @click="openAuthModal('register')"
           >
@@ -115,7 +117,10 @@ onMounted(() => {
               <span>{{ user?.username }}</span>
               <span class="i-heroicons-chevron-down text-xs" />
             </button>
-            <div v-if="showUserMenu" class="absolute right-0 top-full pt-2 w-48 z-50">
+            <div
+              v-if="showUserMenu"
+              class="absolute right-0 top-full pt-2 w-48 z-50"
+            >
               <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-1">
                 <NuxtLink
                   :to="localePath('/profile')"

@@ -2,15 +2,23 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
     <div class="container mx-auto max-w-6xl px-4">
       <!-- Loading state -->
-      <div v-if="loading" class="flex items-center justify-center py-20">
+      <div
+        v-if="loading"
+        class="flex items-center justify-center py-20"
+      >
         <div class="text-center">
           <div class="h-12 w-12 animate-spin rounded-full border-4 border-primary-200 border-t-primary-600 mx-auto" />
-          <p class="mt-4 text-gray-600 dark:text-gray-400">Loading profile...</p>
+          <p class="mt-4 text-gray-600 dark:text-gray-400">
+            Loading profile...
+          </p>
         </div>
       </div>
 
       <!-- Not authenticated -->
-      <div v-else-if="!isAuthenticated" class="flex items-center justify-center py-20">
+      <div
+        v-else-if="!isAuthenticated"
+        class="flex items-center justify-center py-20"
+      >
         <div class="text-center">
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Please Sign In
@@ -40,8 +48,13 @@
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
                   {{ profile.user.username }}
                 </h1>
-                <p class="text-gray-600 dark:text-gray-400">{{ profile.user.email }}</p>
-                <p v-if="profile.user.bio" class="mt-2 text-sm text-gray-700 dark:text-gray-300">
+                <p class="text-gray-600 dark:text-gray-400">
+                  {{ profile.user.email }}
+                </p>
+                <p
+                  v-if="profile.user.bio"
+                  class="mt-2 text-sm text-gray-700 dark:text-gray-300"
+                >
                   {{ profile.user.bio }}
                 </p>
               </div>
@@ -63,25 +76,33 @@
         <!-- Statistics -->
         <div class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
-            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Total Tests</div>
+            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Total Tests
+            </div>
             <div class="mt-2 text-3xl font-bold text-gray-900 dark:text-white">
               {{ profile.statistics.totalTests }}
             </div>
           </div>
           <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
-            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Average WPM</div>
+            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Average WPM
+            </div>
             <div class="mt-2 text-3xl font-bold text-primary-600">
               {{ profile.statistics.avgWpm }}
             </div>
           </div>
           <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
-            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Best WPM</div>
+            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Best WPM
+            </div>
             <div class="mt-2 text-3xl font-bold text-green-600">
               {{ profile.statistics.bestWpm }}
             </div>
           </div>
           <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
-            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">Average Accuracy</div>
+            <div class="text-sm font-medium text-gray-600 dark:text-gray-400">
+              Average Accuracy
+            </div>
             <div class="mt-2 text-3xl font-bold text-blue-600">
               {{ profile.statistics.avgAccuracy }}%
             </div>
@@ -90,18 +111,34 @@
 
         <!-- Recent scores -->
         <div class="rounded-lg bg-white p-6 shadow dark:bg-gray-800">
-          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Recent Tests</h2>
-          <div v-if="profile.recentScores.length === 0" class="py-8 text-center text-gray-500 dark:text-gray-400">
+          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+            Recent Tests
+          </h2>
+          <div
+            v-if="profile.recentScores.length === 0"
+            class="py-8 text-center text-gray-500 dark:text-gray-400"
+          >
             No tests yet. Start typing to see your scores here!
           </div>
-          <div v-else class="overflow-x-auto">
+          <div
+            v-else
+            class="overflow-x-auto"
+          >
             <table class="w-full">
               <thead>
                 <tr class="border-b border-gray-200 dark:border-gray-700">
-                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">Date</th>
-                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">WPM</th>
-                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">Accuracy</th>
-                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">Duration</th>
+                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    Date
+                  </th>
+                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    WPM
+                  </th>
+                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    Accuracy
+                  </th>
+                  <th class="pb-3 text-left text-sm font-semibold text-gray-700 dark:text-gray-300">
+                    Duration
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -141,14 +178,29 @@
           class="absolute right-4 top-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
           @click="showEditModal = false"
         >
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
           </svg>
         </button>
 
-        <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Edit Profile</h2>
+        <h2 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+          Edit Profile
+        </h2>
 
-        <div v-if="editError" class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-200">
+        <div
+          v-if="editError"
+          class="mb-4 rounded-lg bg-red-50 p-3 text-sm text-red-800 dark:bg-red-900/20 dark:text-red-200"
+        >
           {{ editError }}
         </div>
 
@@ -185,9 +237,33 @@
 </template>
 
 <script setup lang="ts">
-const { isAuthenticated, user } = useAuth()
+const { isAuthenticated } = useAuth()
 const loading = ref(true)
-const profile = ref<any>(null)
+
+interface ProfileData {
+  user: {
+    username: string
+    email: string
+    bio: string
+    createdAt: string
+    lastLoginAt: string
+  }
+  statistics: {
+    totalTests: number
+    avgWpm: number
+    bestWpm: number
+    avgAccuracy: number
+  }
+  recentScores: Array<{
+    _id: string
+    date: string
+    wpm: number
+    accuracy: number
+    duration: number
+  }>
+}
+
+const profile = ref<ProfileData | null>(null)
 const showEditModal = ref(false)
 const editError = ref('')
 const isUpdating = ref(false)
@@ -200,7 +276,7 @@ const editForm = reactive({
 const fetchProfile = async () => {
   try {
     loading.value = true
-    const data = await $fetch('/api/profile')
+    const data = await $fetch('/api/profile') as ProfileData
     profile.value = data
     editForm.username = data.user.username
     editForm.bio = data.user.bio
@@ -226,11 +302,14 @@ const handleUpdateProfile = async () => {
       },
     })
 
-    profile.value.user = { ...profile.value.user, ...data }
+    if (profile.value) {
+      profile.value.user = { ...profile.value.user, ...data }
+    }
     showEditModal.value = false
   }
-  catch (error: any) {
-    editError.value = error?.data?.statusMessage || 'Failed to update profile'
+  catch (error: unknown) {
+    const err = error as { data?: { statusMessage?: string } }
+    editError.value = err?.data?.statusMessage || 'Failed to update profile'
   }
   finally {
     isUpdating.value = false

@@ -1,11 +1,10 @@
 import { defineMongooseModel } from '#nuxt/mongoose'
-import type { Schema } from 'mongoose'
 
 export const Score = defineMongooseModel({
   name: 'Score',
   schema: {
     user: {
-      type: 'ObjectId' as any,
+      type: 'ObjectId',
       ref: 'User',
       required: false, // Optional for backward compatibility with anonymous users
     },

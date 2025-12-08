@@ -88,9 +88,9 @@ export default defineEventHandler(async (event) => {
       createdAt: newUser.createdAt,
     }
   }
-  catch (error: any) {
+  catch (error: unknown) {
     // If it's already a createError, rethrow it
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
 

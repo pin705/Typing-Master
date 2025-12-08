@@ -63,9 +63,9 @@ export default defineEventHandler(async (event) => {
       lastLoginAt: user.lastLoginAt,
     }
   }
-  catch (error: any) {
+  catch (error: unknown) {
     // If it's already a createError, rethrow it
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
 

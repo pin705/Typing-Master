@@ -1,5 +1,10 @@
 export const useAuth = () => {
-  const user = useState<any>('user', () => null)
+  const user = useState<{
+    id: string
+    email: string
+    username: string
+    avatar: string
+  } | null>('user', () => null)
   const loading = useState('authLoading', () => false)
 
   const fetchUser = async () => {
@@ -8,7 +13,7 @@ export const useAuth = () => {
       const data = await $fetch('/api/auth/user')
       user.value = data
     }
-    catch (error) {
+    catch {
       user.value = null
     }
     finally {
@@ -25,8 +30,9 @@ export const useAuth = () => {
       user.value = data
       return { success: true, user: data }
     }
-    catch (error: any) {
-      const message = error?.data?.statusMessage || 'Login failed'
+    catch (error: unknown) {
+      const err = error as { data?: { statusMessage?: string } }
+      const message = err?.data?.statusMessage || 'Login failed'
       return { success: false, error: message }
     }
   }
@@ -40,8 +46,9 @@ export const useAuth = () => {
       user.value = data
       return { success: true, user: data }
     }
-    catch (error: any) {
-      const message = error?.data?.statusMessage || 'Registration failed'
+    catch (error: unknown) {
+      const err = error as { data?: { statusMessage?: string } }
+      const message = err?.data?.statusMessage || 'Registration failed'
       return { success: false, error: message }
     }
   }

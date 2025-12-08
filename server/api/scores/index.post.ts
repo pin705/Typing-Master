@@ -1,5 +1,13 @@
 import { Score } from '~~/server/models/Score'
 
+interface ScoreData {
+  username: string
+  wpm: number
+  accuracy: number
+  duration: number
+  user?: string
+}
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
@@ -13,7 +21,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Create score with user reference if logged in
-    const scoreData: any = {
+    const scoreData: ScoreData = {
       username: body.username,
       wpm: body.wpm,
       accuracy: body.accuracy,
@@ -29,7 +37,7 @@ export default defineEventHandler(async (event) => {
 
     return newScore
   }
-  catch (error) {
+  catch (_error) {
     return createError({
       statusCode: 500,
       statusMessage: 'Internal Server Error',

@@ -62,8 +62,8 @@ export default defineEventHandler(async (event) => {
       recentScores: scores.slice(0, 10),
     }
   }
-  catch (error: any) {
-    if (error.statusCode) {
+  catch (error: unknown) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
 
