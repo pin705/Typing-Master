@@ -16,8 +16,6 @@ const scores = ref<ScoreEntry[]>([])
 const loading = ref(true)
 const currentUsername = ref('')
 
-defineExpose({ refresh: fetchScores, setCurrentUser: (name: string) => { currentUsername.value = name } })
-
 const fetchScores = async () => {
   loading.value = true
   try {
@@ -35,6 +33,8 @@ const fetchScores = async () => {
 onMounted(() => {
   fetchScores()
 })
+
+defineExpose({ refresh: fetchScores, setCurrentUser: (name: string) => { currentUsername.value = name } })
 </script>
 
 <template>
