@@ -113,6 +113,15 @@
             class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             placeholder="••••••••"
           >
+          <div class="mt-2 text-right">
+            <NuxtLink
+              to="/forgot-password"
+              class="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400"
+              @click="closeModal"
+            >
+              Forgot password?
+            </NuxtLink>
+          </div>
         </div>
         <button
           type="submit"
