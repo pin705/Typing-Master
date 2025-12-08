@@ -30,5 +30,44 @@
   "common": {
     "loading": "Loading...",
     "refresh": "Refresh"
+  },
+  "stats": {
+    "time": "Time",
+    "wpm": "WPM",
+    "accuracy": "Accuracy"
+  },
+  "controls": {
+    "restart": "Restart",
+    "night_mode": "Night Mode",
+    "show_trace": "Show Trace",
+    "large_font": "Large Font",
+    "sound": "Sound",
+    "random_article": "Random Article",
+    "custom_text": "Custom Text"
+  },
+  "leaderboard": {
+    "title": "Top Typists",
+    "no_scores": "No scores yet",
+    "be_first": "Be the first to set a record!",
+    "test_duration": "{duration}s test",
+    "acc": "Acc"
+  },
+  "results": {
+    "title": "Great Job!",
+    "subtitle": "Here are your results",
+    "total": "Total",
+    "correct": "Correct",
+    "errors": "Errors",
+    "excellent": "🎉 Excellent! You're a typing master!",
+    "good": "👍 Good job! Keep practicing to improve!",
+    "keep_going": "💪 Keep practicing! You're making progress!",
+    "try_again": "Try Again"
+  },
+  "custom_modal": {
+    "title": "Custom Text",
+    "label": "Paste your text here to practice:",
+    "placeholder": "Type or paste your text here...",
+    "cancel": "Cancel",
+    "start": "Start Practice"
   }
 }

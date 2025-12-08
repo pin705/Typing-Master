@@ -9,6 +9,8 @@ defineProps<{
 const emit = defineEmits<{
   (e: 'restart'): void
 }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -35,15 +37,15 @@ const emit = defineEmits<{
             <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
               <span class="i-heroicons-check-circle text-4xl text-green-600"></span>
             </div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Great Job!</h2>
-            <p class="text-gray-500">Here are your results</p>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">{{ t('results.title') }}</h2>
+            <p class="text-gray-500">{{ t('results.subtitle') }}</p>
           </div>
           
           <!-- Main Stats -->
           <div class="grid grid-cols-2 gap-4 mb-6">
             <div class="flex flex-col items-center p-6 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl border border-primary-200">
               <span class="text-5xl font-bold text-primary-600 mb-2 tabular-nums">{{ stats.wpm }}</span>
-              <span class="text-sm text-primary-700 font-semibold uppercase tracking-wider">WPM</span>
+              <span class="text-sm text-primary-700 font-semibold uppercase tracking-wider">{{ t('stats.wpm') }}</span>
             </div>
             
             <div class="flex flex-col items-center p-6 bg-gradient-to-br rounded-xl border" :class="
@@ -66,7 +68,7 @@ const emit = defineEmits<{
                   : stats.accuracy >= 80 
                     ? 'text-yellow-700' 
                     : 'text-red-700'
-              ">Accuracy</span>
+              ">{{ t('stats.accuracy') }}</span>
             </div>
           </div>
 
@@ -74,17 +76,17 @@ const emit = defineEmits<{
           <div class="grid grid-cols-3 gap-3 mb-8">
             <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-gray-100">
               <span class="text-2xl font-bold text-gray-800 mb-1 tabular-nums">{{ stats.totalChars }}</span>
-              <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">Total</span>
+              <span class="text-xs text-gray-500 font-medium uppercase tracking-wider">{{ t('results.total') }}</span>
             </div>
 
             <div class="flex flex-col items-center p-4 bg-green-50 rounded-lg border border-green-100">
               <span class="text-2xl font-bold text-green-600 mb-1 tabular-nums">{{ stats.correctChars }}</span>
-              <span class="text-xs text-green-600 font-medium uppercase tracking-wider">Correct</span>
+              <span class="text-xs text-green-600 font-medium uppercase tracking-wider">{{ t('results.correct') }}</span>
             </div>
 
             <div class="flex flex-col items-center p-4 bg-red-50 rounded-lg border border-red-100">
               <span class="text-2xl font-bold text-red-600 mb-1 tabular-nums">{{ stats.incorrectChars }}</span>
-              <span class="text-xs text-red-600 font-medium uppercase tracking-wider">Errors</span>
+              <span class="text-xs text-red-600 font-medium uppercase tracking-wider">{{ t('results.errors') }}</span>
             </div>
           </div>
 
@@ -104,10 +106,10 @@ const emit = defineEmits<{
                   : 'text-gray-700'
             ">
               {{ stats.accuracy >= 95 && stats.wpm >= 60 
-                ? '🎉 Excellent! You\'re a typing master!' 
+                ? t('results.excellent')
                 : stats.accuracy >= 80 && stats.wpm >= 40
-                  ? '👍 Good job! Keep practicing to improve!'
-                  : '💪 Keep practicing! You\'re making progress!' 
+                  ? t('results.good')
+                  : t('results.keep_going')
               }}
             </p>
           </div>
@@ -117,7 +119,7 @@ const emit = defineEmits<{
             @click="emit('restart')"
           >
             <span class="i-heroicons-arrow-path text-xl"></span>
-            Try Again
+            {{ t('results.try_again') }}
           </button>
         </div>
       </Transition>

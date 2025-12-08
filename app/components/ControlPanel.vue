@@ -14,6 +14,8 @@ const emit = defineEmits<{
   (e: 'toggle-setting', setting: string, value: boolean): void
 }>()
 
+const { t } = useI18n()
+
 const timeOptions = [15, 30, 60, 120]
 
 const settings = ref({
@@ -48,7 +50,7 @@ const toggleSetting = (key: keyof typeof settings.value) => {
         @click="emit('restart')"
       >
         <span class="i-heroicons-arrow-path text-lg"></span>
-        <span>Restart</span>
+        <span>{{ t('controls.restart') }}</span>
       </button>
 
       <!-- Time Selection -->
@@ -84,8 +86,8 @@ const toggleSetting = (key: keyof typeof settings.value) => {
           >
             {{ article.label }}
           </option>
-          <option value="random">🎲 Random Article</option>
-          <option value="custom">✏️ Custom Text</option>
+          <option value="random">🎲 {{ t('controls.random_article') }}</option>
+          <option value="custom">✏️ {{ t('controls.custom_text') }}</option>
         </select>
       </div>
     </div>
@@ -100,7 +102,7 @@ const toggleSetting = (key: keyof typeof settings.value) => {
         @click="toggleSetting('nightMode')"
       >
         <span class="i-heroicons-moon text-lg"></span>
-        <span>Night Mode</span>
+        <span>{{ t('controls.night_mode') }}</span>
       </button>
 
       <button
@@ -111,7 +113,7 @@ const toggleSetting = (key: keyof typeof settings.value) => {
         @click="toggleSetting('showTrace')"
       >
         <span class="i-heroicons-eye text-lg"></span>
-        <span>Show Trace</span>
+        <span>{{ t('controls.show_trace') }}</span>
       </button>
 
       <button
@@ -122,7 +124,7 @@ const toggleSetting = (key: keyof typeof settings.value) => {
         @click="toggleSetting('largeFont')"
       >
         <span class="i-heroicons-arrows-pointing-out text-lg"></span>
-        <span>Large Font</span>
+        <span>{{ t('controls.large_font') }}</span>
       </button>
 
       <button
@@ -133,7 +135,7 @@ const toggleSetting = (key: keyof typeof settings.value) => {
         @click="toggleSetting('sound')"
       >
         <span class="i-heroicons-speaker-wave text-lg"></span>
-        <span>Sound</span>
+        <span>{{ t('controls.sound') }}</span>
       </button>
     </div>
   </div>

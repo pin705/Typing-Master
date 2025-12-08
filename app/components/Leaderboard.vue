@@ -10,6 +10,8 @@ interface ScoreEntry {
   duration: number
 }
 
+const { t } = useI18n()
+
 const scores = ref<ScoreEntry[]>([])
 const loading = ref(true)
 
@@ -39,14 +41,14 @@ defineExpose({ refresh: fetchScores })
     <div class="p-5 border-b border-gray-100 flex justify-between items-center bg-gradient-to-r from-yellow-50 to-orange-50">
       <h3 class="font-bold text-gray-800 flex items-center gap-2 text-lg">
         <span class="i-heroicons-trophy text-yellow-500 text-xl" />
-        Top Typists
+        {{ t('leaderboard.title') }}
       </h3>
       <button
         class="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1 transition-colors px-3 py-1.5 rounded-lg hover:bg-white/50"
         @click="fetchScores"
       >
         <span class="i-heroicons-arrow-path text-base"></span>
-        Refresh
+        {{ t('common.refresh') }}
       </button>
     </div>
 
@@ -55,7 +57,7 @@ defineExpose({ refresh: fetchScores })
       class="p-12 text-center text-gray-500 flex flex-col items-center gap-3"
     >
       <span class="i-heroicons-arrow-path text-3xl animate-spin text-primary-500"></span>
-      <span>Loading...</span>
+      <span>{{ t('common.loading') }}</span>
     </div>
 
     <div
@@ -64,8 +66,8 @@ defineExpose({ refresh: fetchScores })
     >
       <span class="i-heroicons-trophy text-4xl text-gray-300"></span>
       <div>
-        <p class="font-medium text-gray-700">No scores yet</p>
-        <p class="text-sm">Be the first to set a record!</p>
+        <p class="font-medium text-gray-700">{{ t('leaderboard.no_scores') }}</p>
+        <p class="text-sm">{{ t('leaderboard.be_first') }}</p>
       </div>
     </div>
 
@@ -104,21 +106,21 @@ defineExpose({ refresh: fetchScores })
           <!-- User Info -->
           <div class="flex-1 min-w-0">
             <p class="font-semibold text-gray-900 truncate">{{ score.username }}</p>
-            <p class="text-xs text-gray-500">{{ score.duration }}s test</p>
+            <p class="text-xs text-gray-500">{{ t('leaderboard.test_duration', { duration: score.duration }) }}</p>
           </div>
 
           <!-- Stats -->
           <div class="flex items-center gap-4 text-right">
             <div>
               <p class="text-lg font-bold text-primary-600 tabular-nums">{{ score.wpm }}</p>
-              <p class="text-xs text-gray-500 font-medium">WPM</p>
+              <p class="text-xs text-gray-500 font-medium">{{ t('stats.wpm') }}</p>
             </div>
             <div>
               <p class="text-sm font-semibold tabular-nums" :class="
                 score.accuracy >= 95 ? 'text-green-600' : 
                 score.accuracy >= 80 ? 'text-yellow-600' : 'text-gray-600'
               ">{{ score.accuracy }}%</p>
-              <p class="text-xs text-gray-500 font-medium">Acc</p>
+              <p class="text-xs text-gray-500 font-medium">{{ t('leaderboard.acc') }}</p>
             </div>
           </div>
         </div>

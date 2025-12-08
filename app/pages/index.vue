@@ -2,6 +2,8 @@
 import { ref, onMounted, watch } from 'vue'
 import { articles } from '~/data/articles'
 
+const { t } = useI18n()
+
 const selectedTime = ref(60)
 const isCustomModalOpen = ref(false)
 const leaderboardRef = ref()
@@ -164,16 +166,16 @@ onMounted(() => {
               <span class="i-heroicons-star text-2xl text-purple-600"></span>
             </div>
             <h3 class="font-bold text-gray-800 mb-2 text-lg">
-              Daily Challenge
+              {{ t('home.daily_challenge') }}
             </h3>
             <p class="text-sm text-gray-600 mb-4 leading-relaxed">
-              Complete 3 tests with > 95% accuracy to win a badge!
+              {{ t('home.challenge_desc') }}
             </p>
             <div class="w-full h-3 bg-gray-100 rounded-full overflow-hidden mb-2">
               <div class="w-1/3 h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500" />
             </div>
             <p class="text-xs text-gray-500 font-medium">
-              1/3 Completed
+              1/3 {{ t('home.completed') }}
             </p>
           </div>
         </div>
