@@ -9,7 +9,7 @@ const localePath = useLocalePath()
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
         <div class="col-span-1 md:col-span-1">
           <div class="flex items-center gap-2 font-bold text-xl text-gray-800 mb-4">
-            <span class="i-heroicons-keyboard text-primary-600"></span>
+            <img src="/logo-small.svg" alt="Typing Master Logo" class="w-8 h-8">
             Typing Master
           </div>
           <p class="text-gray-500 text-sm leading-relaxed">

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     'nuxt-mongoose',
     'nuxt-auth-utils',
     '@nuxtjs/i18n',
+    '@vite-pwa/nuxt',
   ],
   devtools: { enabled: true },
   compatibilityDate: '2025-07-15',
@@ -27,5 +28,47 @@ export default defineNuxtConfig({
   },
   tailwindcss: {
 
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    manifest: {
+      name: 'Typing Master',
+      short_name: 'TypingMaster',
+      description: 'A modern, feature-rich typing practice application',
+      theme_color: '#4F46E5',
+      background_color: '#ffffff',
+      display: 'standalone',
+      start_url: '/',
+      icons: [
+        {
+          src: '/icons/icon-192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: '/icons/icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: '/icons/icon-512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'any maskable',
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: '/',
+      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
+    },
+    client: {
+      installPrompt: true,
+      periodicSyncForUpdates: 3600,
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
+    },
   },
 })

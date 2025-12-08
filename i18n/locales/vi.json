@@ -30,5 +30,44 @@
   "common": {
     "loading": "Đang tải...",
     "refresh": "Làm mới"
+  },
+  "stats": {
+    "time": "Thời gian",
+    "wpm": "Từ/phút",
+    "accuracy": "Độ chính xác"
+  },
+  "controls": {
+    "restart": "Bắt đầu lại",
+    "night_mode": "Chế độ tối",
+    "show_trace": "Hiện dấu vết",
+    "large_font": "Chữ to",
+    "sound": "Âm thanh",
+    "random_article": "Bài ngẫu nhiên",
+    "custom_text": "Văn bản tùy chỉnh"
+  },
+  "leaderboard": {
+    "title": "Người gõ phím giỏi nhất",
+    "no_scores": "Chưa có điểm số",
+    "be_first": "Hãy là người đầu tiên lập kỷ lục!",
+    "test_duration": "Test {duration}s",
+    "acc": "Chính xác"
+  },
+  "results": {
+    "title": "Làm tốt lắm!",
+    "subtitle": "Đây là kết quả của bạn",
+    "total": "Tổng số",
+    "correct": "Đúng",
+    "errors": "Lỗi",
+    "excellent": "🎉 Xuất sắc! Bạn là bậc thầy gõ phím!",
+    "good": "👍 Làm tốt! Tiếp tục luyện tập để cải thiện!",
+    "keep_going": "💪 Tiếp tục luyện tập! Bạn đang tiến bộ!",
+    "try_again": "Thử lại"
+  },
+  "custom_modal": {
+    "title": "Văn bản tùy chỉnh",
+    "label": "Dán văn bản của bạn vào đây để luyện tập:",
+    "placeholder": "Nhập hoặc dán văn bản của bạn vào đây...",
+    "cancel": "Hủy",
+    "start": "Bắt đầu luyện tập"
   }
 }
