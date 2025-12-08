@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, nextTick } from 'vue'
 import { articles } from '~/data/articles'
+import { generateGuestUsername, getStoredUsername, setStoredUsername, hasCompletedSetup, markSetupCompleted } from '~/utils/username'
 
 const { t } = useI18n()
 
 const selectedTime = ref(60)
 const isCustomModalOpen = ref(false)
+const isSetupModalOpen = ref(false)
+const username = ref('')
 const leaderboardRef = ref()
 const { playClick, playError, isEnabled: isSoundEnabled } = useSound()
 
@@ -37,7 +40,7 @@ watch(isFinished, async (finished) => {
       await $fetch('/api/scores', {
         method: 'POST',
         body: {
-          username: 'Guest ' + Math.floor(Math.random() * 1000),
+          username: username.value || generateGuestUsername(),
           wpm: stats.value.wpm,
           accuracy: stats.value.accuracy,
           duration: selectedTime.value,
@@ -110,9 +113,43 @@ const handleChangeTime = (time: number) => {
   setDuration(time)
 }
 
-onMounted(() => {
+const handleSetupConfirm = async (name: string) => {
+  username.value = name
+  setStoredUsername(name)
+  markSetupCompleted()
+  isSetupModalOpen.value = false
+  await nextTick()
+  leaderboardRef.value?.setCurrentUser(name)
+}
+
+const handleSetupSkip = async () => {
+  const guestName = generateGuestUsername()
+  username.value = guestName
+  setStoredUsername(guestName)
+  markSetupCompleted()
+  isSetupModalOpen.value = false
+  await nextTick()
+  leaderboardRef.value?.setCurrentUser(guestName)
+}
+
+onMounted(async () => {
   if (articles[0]) {
     setText(articles[0].content)
+  }
+  
+  // Check if user has completed setup before (client-side only)
+  if (typeof window !== 'undefined') {
+    if (hasCompletedSetup()) {
+      const storedUsername = getStoredUsername()
+      if (storedUsername) {
+        username.value = storedUsername
+        await nextTick()
+        leaderboardRef.value?.setCurrentUser(storedUsername)
+      }
+    } else {
+      // Show setup modal for first-time users
+      isSetupModalOpen.value = true
+    }
   }
 })
 </script>
@@ -194,6 +231,13 @@ onMounted(() => {
       :is-open="isCustomModalOpen"
       @confirm="handleCustomTextConfirm"
       @cancel="isCustomModalOpen = false"
+    />
+
+    <!-- Setup Modal -->
+    <SetupModal
+      :is-open="isSetupModalOpen"
+      @confirm="handleSetupConfirm"
+      @cancel="handleSetupSkip"
     />
   </div>
 </template>

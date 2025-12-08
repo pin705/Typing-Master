@@ -69,5 +69,14 @@
     "placeholder": "Nhập hoặc dán văn bản của bạn vào đây...",
     "cancel": "Hủy",
     "start": "Bắt đầu luyện tập"
+  },
+  "setup": {
+    "title": "Chào mừng!",
+    "subtitle": "Nhập tên của bạn để bắt đầu",
+    "username_label": "Tên của bạn",
+    "username_placeholder": "Nhập tên của bạn...",
+    "username_hint": "Để trống để sử dụng tên khách ngẫu nhiên",
+    "skip": "Bỏ qua",
+    "start": "Bắt đầu gõ"
   }
 }

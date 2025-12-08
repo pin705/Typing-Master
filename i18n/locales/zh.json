@@ -69,5 +69,14 @@
     "placeholder": "在此处输入或粘贴您的文本...",
     "cancel": "取消",
     "start": "开始练习"
+  },
+  "setup": {
+    "title": "欢迎！",
+    "subtitle": "输入您的名字开始",
+    "username_label": "您的名字",
+    "username_placeholder": "输入您的名字...",
+    "username_hint": "留空使用随机访客名称",
+    "skip": "跳过",
+    "start": "开始打字"
   }
 }

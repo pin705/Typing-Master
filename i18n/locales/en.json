@@ -69,5 +69,14 @@
     "placeholder": "Type or paste your text here...",
     "cancel": "Cancel",
     "start": "Start Practice"
+  },
+  "setup": {
+    "title": "Welcome!",
+    "subtitle": "Enter your name to get started",
+    "username_label": "Your Name",
+    "username_placeholder": "Enter your name...",
+    "username_hint": "Leave blank to use a random guest name",
+    "skip": "Skip",
+    "start": "Start Typing"
   }
 }
