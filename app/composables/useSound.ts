@@ -21,7 +21,7 @@ export const useSound = () => {
 
     oscillator.type = type
     oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime)
-    
+
     gainNode.gain.setValueAtTime(0.1, audioContext.currentTime)
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration)
 

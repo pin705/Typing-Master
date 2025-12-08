@@ -22,7 +22,10 @@ const { t } = useI18n()
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
   >
-    <div v-if="isOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+    <div
+      v-if="isOpen"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+    >
       <Transition
         enter-active-class="transition ease-out duration-300 delay-100"
         enter-from-class="opacity-0 scale-95 translate-y-4"
@@ -31,44 +34,60 @@ const { t } = useI18n()
         leave-from-class="opacity-100 scale-100 translate-y-0"
         leave-to-class="opacity-0 scale-95 translate-y-4"
       >
-        <div v-if="isOpen" class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 transform">
+        <div
+          v-if="isOpen"
+          class="bg-white rounded-2xl shadow-2xl w-full max-w-lg p-8 transform"
+        >
           <!-- Success Icon & Title -->
           <div class="text-center mb-8">
             <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-              <span class="i-heroicons-check-circle text-4xl text-green-600"></span>
+              <span class="i-heroicons-check-circle text-4xl text-green-600" />
             </div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">{{ t('results.title') }}</h2>
-            <p class="text-gray-500">{{ t('results.subtitle') }}</p>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">
+              {{ t('results.title') }}
+            </h2>
+            <p class="text-gray-500">
+              {{ t('results.subtitle') }}
+            </p>
           </div>
-          
+
           <!-- Main Stats -->
           <div class="grid grid-cols-2 gap-4 mb-6">
             <div class="flex flex-col items-center p-6 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl border border-primary-200">
               <span class="text-5xl font-bold text-primary-600 mb-2 tabular-nums">{{ stats.wpm }}</span>
               <span class="text-sm text-primary-700 font-semibold uppercase tracking-wider">{{ t('stats.wpm') }}</span>
             </div>
-            
-            <div class="flex flex-col items-center p-6 bg-gradient-to-br rounded-xl border" :class="
-              stats.accuracy >= 95 
-                ? 'from-green-50 to-green-100 border-green-200' 
-                : stats.accuracy >= 80 
-                  ? 'from-yellow-50 to-yellow-100 border-yellow-200' 
-                  : 'from-red-50 to-red-100 border-red-200'
-            ">
-              <span class="text-5xl font-bold mb-2 tabular-nums" :class="
-                stats.accuracy >= 95 
-                  ? 'text-green-600' 
-                  : stats.accuracy >= 80 
-                    ? 'text-yellow-600' 
-                    : 'text-red-600'
-              ">{{ stats.accuracy }}%</span>
-              <span class="text-sm font-semibold uppercase tracking-wider" :class="
-                stats.accuracy >= 95 
-                  ? 'text-green-700' 
-                  : stats.accuracy >= 80 
-                    ? 'text-yellow-700' 
-                    : 'text-red-700'
-              ">{{ t('stats.accuracy') }}</span>
+
+            <div
+              class="flex flex-col items-center p-6 bg-gradient-to-br rounded-xl border"
+              :class="
+                stats.accuracy >= 95
+                  ? 'from-green-50 to-green-100 border-green-200'
+                  : stats.accuracy >= 80
+                    ? 'from-yellow-50 to-yellow-100 border-yellow-200'
+                    : 'from-red-50 to-red-100 border-red-200'
+              "
+            >
+              <span
+                class="text-5xl font-bold mb-2 tabular-nums"
+                :class="
+                  stats.accuracy >= 95
+                    ? 'text-green-600'
+                    : stats.accuracy >= 80
+                      ? 'text-yellow-600'
+                      : 'text-red-600'
+                "
+              >{{ stats.accuracy }}%</span>
+              <span
+                class="text-sm font-semibold uppercase tracking-wider"
+                :class="
+                  stats.accuracy >= 95
+                    ? 'text-green-700'
+                    : stats.accuracy >= 80
+                      ? 'text-yellow-700'
+                      : 'text-red-700'
+                "
+              >{{ t('stats.accuracy') }}</span>
             </div>
           </div>
 
@@ -91,21 +110,27 @@ const { t } = useI18n()
           </div>
 
           <!-- Performance Message -->
-          <div class="mb-6 p-4 rounded-lg text-center" :class="
-            stats.accuracy >= 95 && stats.wpm >= 60
-              ? 'bg-green-50 border border-green-200'
-              : stats.accuracy >= 80 && stats.wpm >= 40
-                ? 'bg-blue-50 border border-blue-200'
-                : 'bg-gray-50 border border-gray-200'
-          ">
-            <p class="font-medium" :class="
+          <div
+            class="mb-6 p-4 rounded-lg text-center"
+            :class="
               stats.accuracy >= 95 && stats.wpm >= 60
-                ? 'text-green-700'
+                ? 'bg-green-50 border border-green-200'
                 : stats.accuracy >= 80 && stats.wpm >= 40
-                  ? 'text-blue-700'
-                  : 'text-gray-700'
-            ">
-              {{ stats.accuracy >= 95 && stats.wpm >= 60 
+                  ? 'bg-blue-50 border border-blue-200'
+                  : 'bg-gray-50 border border-gray-200'
+            "
+          >
+            <p
+              class="font-medium"
+              :class="
+                stats.accuracy >= 95 && stats.wpm >= 60
+                  ? 'text-green-700'
+                  : stats.accuracy >= 80 && stats.wpm >= 40
+                    ? 'text-blue-700'
+                    : 'text-gray-700'
+              "
+            >
+              {{ stats.accuracy >= 95 && stats.wpm >= 60
                 ? t('results.excellent')
                 : stats.accuracy >= 80 && stats.wpm >= 40
                   ? t('results.good')
@@ -114,11 +139,11 @@ const { t } = useI18n()
             </p>
           </div>
 
-          <button 
+          <button
             class="w-full py-4 bg-primary-600 hover:bg-primary-700 active:bg-primary-800 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2 text-lg shadow-lg shadow-primary-500/30 hover:shadow-xl hover:shadow-primary-500/40"
             @click="emit('restart')"
           >
-            <span class="i-heroicons-arrow-path text-xl"></span>
+            <span class="i-heroicons-arrow-path text-xl" />
             {{ t('results.try_again') }}
           </button>
         </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 
-const keysToPractice = "asdfjkl;"
+const keysToPractice = 'asdfjkl;'
 const targetChar = ref('')
 const pressedKey = ref('')
 const score = ref(0)
@@ -14,11 +14,12 @@ const generateNextChar = () => {
 
 const handleKeydown = (e: KeyboardEvent) => {
   pressedKey.value = e.key
-  
+
   if (e.key === targetChar.value) {
     score.value++
     generateNextChar()
-  } else {
+  }
+  else {
     mistakes.value++
   }
 
@@ -40,19 +41,31 @@ onUnmounted(() => {
 <template>
   <div class="flex flex-col items-center gap-12 py-12">
     <div class="text-center">
-      <h1 class="text-3xl font-bold text-gray-900 mb-2">Key Practice</h1>
-      <p class="text-gray-500">Practice your touch typing skills</p>
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        Key Practice
+      </h1>
+      <p class="text-gray-500">
+        Practice your touch typing skills
+      </p>
     </div>
 
     <!-- Stats -->
     <div class="flex gap-12">
       <div class="text-center">
-        <div class="text-4xl font-bold text-green-600">{{ score }}</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wider">Score</div>
+        <div class="text-4xl font-bold text-green-600">
+          {{ score }}
+        </div>
+        <div class="text-sm text-gray-500 uppercase tracking-wider">
+          Score
+        </div>
       </div>
       <div class="text-center">
-        <div class="text-4xl font-bold text-red-500">{{ mistakes }}</div>
-        <div class="text-sm text-gray-500 uppercase tracking-wider">Mistakes</div>
+        <div class="text-4xl font-bold text-red-500">
+          {{ mistakes }}
+        </div>
+        <div class="text-sm text-gray-500 uppercase tracking-wider">
+          Mistakes
+        </div>
       </div>
     </div>
 
@@ -62,11 +75,11 @@ onUnmounted(() => {
     </div>
 
     <!-- Virtual Keyboard -->
-    <VirtualKeyboard 
+    <VirtualKeyboard
       :active-key="targetChar"
       :pressed-key="pressedKey"
     />
-    
+
     <div class="text-gray-400 text-sm mt-8">
       Press the highlighted key on your keyboard
     </div>

@@ -4,7 +4,9 @@ const { t } = useI18n()
 
 <template>
   <div class="container mx-auto px-4 py-12 max-w-4xl">
-    <h1 class="text-3xl font-bold text-gray-900 mb-6">{{ t('footer.privacy') }}</h1>
+    <h1 class="text-3xl font-bold text-gray-900 mb-6">
+      {{ t('footer.privacy') }}
+    </h1>
     <div class="prose prose-lg text-gray-600">
       <p>Last updated: December 8, 2025</p>
       <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service.</p>

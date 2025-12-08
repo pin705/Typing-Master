@@ -2,16 +2,16 @@ import { commonWords } from '~/utils/words'
 
 export const useWordGenerator = () => {
   const generateWords = (
-    count: number, 
-    lang: 'en' | 'vi' | 'zh' = 'en', 
-    options: { punctuation?: boolean; numbers?: boolean } = {}
+    count: number,
+    lang: 'en' | 'vi' | 'zh' = 'en',
+    options: { punctuation?: boolean, numbers?: boolean } = {},
   ) => {
     const words = commonWords[lang] || commonWords.en
     const result: string[] = []
 
     for (let i = 0; i < count; i++) {
       let word = words[Math.floor(Math.random() * words.length)]
-      
+
       // Add numbers occasionally
       if (options.numbers && Math.random() < 0.1) {
         word = Math.floor(Math.random() * 1000).toString()
@@ -36,6 +36,6 @@ export const useWordGenerator = () => {
   }
 
   return {
-    generateWords
+    generateWords,
   }
 }

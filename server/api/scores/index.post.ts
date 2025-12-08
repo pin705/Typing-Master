@@ -3,7 +3,7 @@ import { Score } from '~~/server/models/Score'
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
-    
+
     if (!body.username || !body.wpm || !body.accuracy || !body.duration) {
       return createError({
         statusCode: 400,
@@ -19,7 +19,8 @@ export default defineEventHandler(async (event) => {
     })
 
     return newScore
-  } catch (error) {
+  }
+  catch (error) {
     return createError({
       statusCode: 500,
       statusMessage: 'Internal Server Error',

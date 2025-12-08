@@ -19,14 +19,21 @@ const availableLocales = computed(() => {
   <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
     <div class="container mx-auto px-4 h-16 flex items-center justify-between max-w-6xl">
       <div class="flex items-center gap-8">
-        <NuxtLink :to="localePath('/')" class="text-2xl font-bold flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors">
-          <img src="/logo-small.svg" alt="Typing Master Logo" class="w-8 h-8">
+        <NuxtLink
+          :to="localePath('/')"
+          class="text-2xl font-bold flex items-center gap-2 text-primary-600 hover:text-primary-700 transition-colors"
+        >
+          <img
+            src="/logo-small.svg"
+            alt="Typing Master Logo"
+            class="w-8 h-8"
+          >
           <span>Typing Master</span>
         </NuxtLink>
-        
+
         <nav class="hidden md:flex items-center gap-1">
-          <NuxtLink 
-            v-for="item in navItems" 
+          <NuxtLink
+            v-for="item in navItems"
             :key="item.href"
             :to="localePath(item.href)"
             class="px-4 py-2 rounded-lg transition-all text-sm font-medium text-gray-600 hover:bg-gray-50 hover:text-primary-600"
@@ -42,7 +49,7 @@ const availableLocales = computed(() => {
         <div class="relative group">
           <button class="flex items-center gap-1 text-gray-600 hover:text-primary-600 font-medium py-2">
             <span class="uppercase">{{ locale }}</span>
-            <span class="i-heroicons-chevron-down text-xs"></span>
+            <span class="i-heroicons-chevron-down text-xs" />
           </button>
           <div class="absolute right-0 top-full pt-2 w-32 hidden group-hover:block z-50">
             <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-1">
@@ -59,7 +66,7 @@ const availableLocales = computed(() => {
           </div>
         </div>
 
-        <div class="h-4 w-px bg-gray-200"></div>
+        <div class="h-4 w-px bg-gray-200" />
 
         <button class="text-gray-600 hover:text-primary-600 font-medium transition-colors px-3 py-2 rounded-lg hover:bg-gray-50">
           {{ t('nav.login') }}

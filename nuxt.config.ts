@@ -19,15 +19,17 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en', file: 'en.json', name: 'English' },
       { code: 'vi', file: 'vi.json', name: 'Tiếng Việt' },
-      { code: 'zh', file: 'zh.json', name: '中文' }
+      { code: 'zh', file: 'zh.json', name: '中文' },
     ],
     lazy: true,
     langDir: 'locales',
     defaultLocale: 'en',
     strategy: 'prefix_except_default',
-  },
-  tailwindcss: {
-
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
   },
   pwa: {
     registerType: 'autoUpdate',
@@ -70,5 +72,8 @@ export default defineNuxtConfig({
       enabled: true,
       type: 'module',
     },
+  },
+  tailwindcss: {
+
   },
 })

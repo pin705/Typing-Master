@@ -6,7 +6,8 @@ export default defineEventHandler(async (event) => {
       .sort({ wpm: -1, accuracy: -1 })
       .limit(10)
     return scores
-  } catch (error) {
+  }
+  catch (error) {
     return createError({
       statusCode: 500,
       statusMessage: 'Internal Server Error',
