@@ -19,6 +19,7 @@ export default oauthGoogleEventHandler({
           // Link Google account to existing user
           existingUser.provider = 'google'
           existingUser.providerId = user.sub
+          existingUser.emailVerified = true // OAuth emails are verified
           if (user.picture && !existingUser.avatar) {
             existingUser.avatar = user.picture
           }

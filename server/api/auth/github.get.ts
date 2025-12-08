@@ -19,6 +19,7 @@ export default oauthGitHubEventHandler({
           // Link GitHub account to existing user
           existingUser.provider = 'github'
           existingUser.providerId = user.id.toString()
+          existingUser.emailVerified = true // OAuth emails are verified
           if (user.avatar_url && !existingUser.avatar) {
             existingUser.avatar = user.avatar_url
           }
