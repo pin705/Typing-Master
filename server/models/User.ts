@@ -38,10 +38,6 @@ export const User = defineMongooseModel({
       type: String,
       default: '',
     },
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
     lastLoginAt: {
       type: Date,
       default: Date.now,
@@ -62,6 +58,6 @@ export const User = defineMongooseModel({
     },
   },
   options: {
-    timestamps: true,
+    timestamps: true, // This adds createdAt and updatedAt automatically
   },
 })

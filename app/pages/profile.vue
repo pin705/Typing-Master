@@ -303,7 +303,9 @@ const handleUpdateProfile = async () => {
     })
 
     if (profile.value) {
-      profile.value.user = { ...profile.value.user, ...data }
+      // Update only the expected fields
+      profile.value.user.username = data.username
+      profile.value.user.bio = data.bio
     }
     showEditModal.value = false
   }

@@ -35,10 +35,10 @@ export default defineEventHandler(async (event) => {
       ? scores.reduce((sum, score) => sum + score.accuracy, 0) / totalTests
       : 0
     const bestWpm = totalTests > 0
-      ? Math.max(...scores.map(score => score.wpm))
+      ? scores.reduce((max, score) => score.wpm > max ? score.wpm : max, 0)
       : 0
     const bestAccuracy = totalTests > 0
-      ? Math.max(...scores.map(score => score.accuracy))
+      ? scores.reduce((max, score) => score.accuracy > max ? score.accuracy : max, 0)
       : 0
 
     return {
