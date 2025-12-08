@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "typing_test": "Kiểm tra tốc độ",
+    "english_typing": "Gõ tiếng Anh",
+    "key_practice": "Luyện phím",
+    "chinese_typing": "Gõ tiếng Trung",
+    "speed_test": "Test tốc độ",
+    "login": "Đăng nhập",
+    "register": "Đăng ký"
+  },
+  "footer": {
+    "about_us": "Về chúng tôi",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản sử dụng",
+    "privacy": "Chính sách bảo mật",
+    "resources": "Tài nguyên",
+    "support": "Hỗ trợ",
+    "connect": "Kết nối",
+    "lessons": "Bài học gõ phím",
+    "games": "Trò chơi gõ phím",
+    "blog": "Blog",
+    "help": "Trung tâm trợ giúp",
+    "rights": "Đã đăng ký bản quyền."
+  },
+  "home": {
+    "daily_challenge": "Thử thách hàng ngày",
+    "challenge_desc": "Hoàn thành 3 bài test với độ chính xác > 95% để nhận huy hiệu!",
+    "completed": "Đã hoàn thành"
+  },
+  "common": {
+    "loading": "Đang tải...",
+    "refresh": "Làm mới"
+  }
+}

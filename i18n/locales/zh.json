@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "typing_test": "打字测试",
+    "english_typing": "英文打字",
+    "key_practice": "键位练习",
+    "chinese_typing": "中文打字",
+    "speed_test": "速度测试",
+    "login": "登录",
+    "register": "注册"
+  },
+  "footer": {
+    "about_us": "关于我们",
+    "contact": "联系我们",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "resources": "资源",
+    "support": "支持",
+    "connect": "连接",
+    "lessons": "打字课程",
+    "games": "打字游戏",
+    "blog": "博客",
+    "help": "帮助中心",
+    "rights": "版权所有。"
+  },
+  "home": {
+    "daily_challenge": "每日挑战",
+    "challenge_desc": "以 > 95% 的准确率完成 3 次测试即可赢得徽章！",
+    "completed": "已完成"
+  },
+  "common": {
+    "loading": "加载中...",
+    "refresh": "刷新"
+  }
+}

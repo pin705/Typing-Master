@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { articles } from '~/data/articles'
 
 defineProps<{
   isRunning: boolean
@@ -19,18 +20,13 @@ const timeOptions = [
   { label: '5 min', value: 300 },
 ]
 
-const articles = [
-  { id: 'match', label: 'The Little Match Girl' },
-  { id: 'census', label: 'American Census' },
-  { id: 'programming', label: 'Programming Quotes' },
-]
-
 const selectedArticle = ref(articles[0].id)
 
 const settings = ref({
   nightMode: false,
   showTrace: true,
-  largeFont: false
+  largeFont: false,
+  sound: true,
 })
 
 const toggleSetting = (key: keyof typeof settings.value) => {
@@ -48,12 +44,13 @@ const toggleSetting = (key: keyof typeof settings.value) => {
           <span class="text-sm font-medium text-gray-500">Article:</span>
           <select 
             v-model="selectedArticle"
-            class="px-3 py-1.5 rounded-md border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+            class="px-3 py-1.5 rounded-md border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 max-w-[200px]"
             @change="emit('changeArticle', selectedArticle)"
           >
             <option v-for="article in articles" :key="article.id" :value="article.id">
               {{ article.label }}
             </option>
+            <option value="custom">Custom Text...</option>
           </select>
         </div>
         
@@ -101,6 +98,16 @@ const toggleSetting = (key: keyof typeof settings.value) => {
             @change="toggleSetting('showTrace')"
           >
           <span class="text-sm text-gray-600">Show Trace</span>
+        </label>
+
+        <label class="flex items-center gap-2 cursor-pointer select-none">
+          <input 
+            type="checkbox" 
+            :checked="settings.sound"
+            class="rounded text-primary-600 focus:ring-primary-500"
+            @change="toggleSetting('sound')"
+          >
+          <span class="text-sm text-gray-600">Sound</span>
         </label>
 
         <label class="flex items-center gap-2 cursor-pointer select-none">
