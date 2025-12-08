@@ -6,6 +6,8 @@ const { t } = useI18n()
 
 const selectedTime = ref(60)
 const isCustomModalOpen = ref(false)
+const isSetupModalOpen = ref(true)
+const username = ref('')
 const leaderboardRef = ref()
 const { playClick, playError, isEnabled: isSoundEnabled } = useSound()
 
@@ -37,7 +39,7 @@ watch(isFinished, async (finished) => {
       await $fetch('/api/scores', {
         method: 'POST',
         body: {
-          username: 'Guest ' + Math.floor(Math.random() * 1000),
+          username: username.value || 'Guest ' + Math.floor(Math.random() * 1000),
           wpm: stats.value.wpm,
           accuracy: stats.value.accuracy,
           duration: selectedTime.value,
@@ -108,6 +110,18 @@ const handleRestart = () => {
 const handleChangeTime = (time: number) => {
   selectedTime.value = time
   setDuration(time)
+}
+
+const handleSetupConfirm = (name: string) => {
+  username.value = name
+  isSetupModalOpen.value = false
+  leaderboardRef.value?.setCurrentUser(name)
+}
+
+const handleSetupSkip = () => {
+  username.value = 'Guest ' + Math.floor(Math.random() * 1000)
+  isSetupModalOpen.value = false
+  leaderboardRef.value?.setCurrentUser(username.value)
 }
 
 onMounted(() => {
@@ -194,6 +208,13 @@ onMounted(() => {
       :is-open="isCustomModalOpen"
       @confirm="handleCustomTextConfirm"
       @cancel="isCustomModalOpen = false"
+    />
+
+    <!-- Setup Modal -->
+    <SetupModal
+      :is-open="isSetupModalOpen"
+      @confirm="handleSetupConfirm"
+      @cancel="handleSetupSkip"
     />
   </div>
 </template>

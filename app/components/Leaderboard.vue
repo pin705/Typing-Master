@@ -14,6 +14,9 @@ const { t } = useI18n()
 
 const scores = ref<ScoreEntry[]>([])
 const loading = ref(true)
+const currentUsername = ref('')
+
+defineExpose({ refresh: fetchScores, setCurrentUser: (name: string) => { currentUsername.value = name } })
 
 const fetchScores = async () => {
   loading.value = true
@@ -32,8 +35,6 @@ const fetchScores = async () => {
 onMounted(() => {
   fetchScores()
 })
-
-defineExpose({ refresh: fetchScores })
 </script>
 
 <template>
@@ -76,7 +77,10 @@ defineExpose({ refresh: fetchScores })
         v-for="(score, index) in scores"
         :key="score._id"
         class="p-4 hover:bg-gray-50 transition-all duration-200"
-        :class="index < 3 ? 'bg-gradient-to-r' : ''"
+        :class="[
+          index < 3 ? 'bg-gradient-to-r' : '',
+          score.username === currentUsername ? 'ring-2 ring-primary-500 bg-primary-50/30' : ''
+        ]"
         :style="index === 0 ? 'background: linear-gradient(to right, #fef3c7 0%, transparent 100%)' : 
                 index === 1 ? 'background: linear-gradient(to right, #f3f4f6 0%, transparent 100%)' : 
                 index === 2 ? 'background: linear-gradient(to right, #fed7aa 0%, transparent 100%)' : ''"
@@ -97,7 +101,8 @@ defineExpose({ refresh: fetchScores })
             </div>
             <div
               v-else
-              class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium text-gray-500 bg-gray-100"
+              class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium"
+              :class="score.username === currentUsername ? 'bg-primary-600 text-white font-bold' : 'bg-gray-100 text-gray-500'"
             >
               {{ index + 1 }}
             </div>
@@ -105,7 +110,10 @@ defineExpose({ refresh: fetchScores })
 
           <!-- User Info -->
           <div class="flex-1 min-w-0">
-            <p class="font-semibold text-gray-900 truncate">{{ score.username }}</p>
+            <p class="font-semibold text-gray-900 truncate" :class="score.username === currentUsername ? 'text-primary-700 font-bold' : ''">
+              {{ score.username }}
+              <span v-if="score.username === currentUsername" class="ml-1 text-xs text-primary-600">(You)</span>
+            </p>
             <p class="text-xs text-gray-500">{{ t('leaderboard.test_duration', { duration: score.duration }) }}</p>
           </div>
 
