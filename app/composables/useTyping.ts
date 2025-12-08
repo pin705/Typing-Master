@@ -16,7 +16,9 @@ export const useTyping = (initialTime: number = 60) => {
     const isFinished = ref(false)
     const duration = ref(initialTime)
     const timeRemaining = ref(initialTime)
+    const timeElapsed = ref(0)
     const timer = ref<ReturnType<typeof setInterval> | null>(null)
+    const mode = ref<'time' | 'words'>('time')
 
     // Stats
     const startTime = ref<number | null>(null)
@@ -33,16 +35,24 @@ export const useTyping = (initialTime: number = 60) => {
         reset()
     }
 
+    const setMode = (newMode: 'time' | 'words') => {
+        mode.value = newMode
+        reset()
+    }
+
     const start = () => {
         if (isRunning.value || isFinished.value) return
         isRunning.value = true
         startTime.value = Date.now()
 
         timer.value = setInterval(() => {
-            if (timeRemaining.value > 0) {
-                timeRemaining.value--
-            } else {
-                finish()
+            timeElapsed.value++
+            if (mode.value === 'time') {
+                if (timeRemaining.value > 0) {
+                    timeRemaining.value--
+                } else {
+                    finish()
+                }
             }
         }, 1000)
     }
@@ -59,6 +69,7 @@ export const useTyping = (initialTime: number = 60) => {
         isRunning.value = false
         isFinished.value = false
         timeRemaining.value = duration.value
+        timeElapsed.value = 0
         correctChars.value = 0
         incorrectChars.value = 0
         startTime.value = null
@@ -93,6 +104,11 @@ export const useTyping = (initialTime: number = 60) => {
         if (userInput.value.length >= targetText.value.length) return
 
         userInput.value += char
+
+        // Check finish condition for words mode
+        if (mode.value === 'words' && userInput.value.length === targetText.value.length) {
+            finish()
+        }
     }
 
     const stats = computed<TypingStats>(() => {
@@ -113,9 +129,12 @@ export const useTyping = (initialTime: number = 60) => {
 
         // Calculate WPM
         // Standard WPM = (all typed / 5) / time in minutes
-        const timeElapsed = duration.value - timeRemaining.value
-        const wpm = timeElapsed > 0
-            ? Math.round((totalTyped / 5) / (timeElapsed / 60))
+        const timeInSeconds = mode.value === 'time' 
+            ? (duration.value - timeRemaining.value)
+            : timeElapsed.value
+            
+        const wpm = timeInSeconds > 0
+            ? Math.round((totalTyped / 5) / (timeInSeconds / 60))
             : 0
 
         return {
@@ -141,6 +160,7 @@ export const useTyping = (initialTime: number = 60) => {
         start,
         reset,
         handleInput,
-        setDuration
+        setDuration,
+        setMode
     }
 }
