@@ -8,8 +8,6 @@
 <script setup lang="ts">
 const achievementToast = ref()
 
-// Make achievementToast globally available
-if (process.client) {
-  window.$achievementToast = achievementToast
-}
+// Provide the achievement toast for any child component to use
+provide('achievementToast', achievementToast)
 </script>

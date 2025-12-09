@@ -56,6 +56,15 @@ export default defineEventHandler(async (event) => {
       }
     }
     else {
+      // Check if provider exists in linked providers
+      const providerExists = user.linkedProviders.some(p => p.provider === provider)
+      if (!providerExists) {
+        throw createError({
+          statusCode: 400,
+          message: 'Provider not found in linked accounts',
+        })
+      }
+      
       // Remove from linked providers
       user.linkedProviders = user.linkedProviders.filter(p => p.provider !== provider)
     }

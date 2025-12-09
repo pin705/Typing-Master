@@ -66,11 +66,10 @@ watch(isFinished, async (finished) => {
       
       // Show achievement notifications if any were unlocked
       if (response.newAchievements && response.newAchievements.length > 0) {
-        // @ts-expect-error - global ref
-        const toast = window.$achievementToast?.value
-        if (toast) {
+        const toast = inject<Ref>('achievementToast')
+        if (toast && toast.value) {
           response.newAchievements.forEach((achievement: any) => {
-            toast.showAchievement(achievement)
+            toast.value.showAchievement(achievement)
           })
         }
       }
