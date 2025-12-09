@@ -54,7 +54,7 @@ watch(isAuthenticated, async (authenticated) => {
 watch(isFinished, async (finished) => {
   if (finished) {
     try {
-      await $fetch('/api/scores', {
+      const response = await $fetch('/api/scores', {
         method: 'POST',
         body: {
           username: username.value || generateGuestUsername(),
@@ -63,6 +63,17 @@ watch(isFinished, async (finished) => {
           duration: selectedTime.value,
         },
       })
+      
+      // Show achievement notifications if any were unlocked
+      if (response.newAchievements && response.newAchievements.length > 0) {
+        const toast = inject<Ref>('achievementToast')
+        if (toast && toast.value) {
+          response.newAchievements.forEach((achievement: any) => {
+            toast.value.showAchievement(achievement)
+          })
+        }
+      }
+      
       // Refresh leaderboard
       leaderboardRef.value?.refresh()
     }

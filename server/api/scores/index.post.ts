@@ -1,4 +1,5 @@
 import { Score } from '~~/server/models/Score'
+import { checkAndAwardAchievements } from '~~/server/utils/achievements'
 
 interface ScoreData {
   username: string
@@ -35,7 +36,16 @@ export default defineEventHandler(async (event) => {
 
     const newScore = await Score.create(scoreData)
 
-    return newScore
+    // Check for new achievements if user is authenticated
+    let newAchievements = []
+    if (session && session.user) {
+      newAchievements = await checkAndAwardAchievements(session.user.id)
+    }
+
+    return {
+      score: newScore,
+      newAchievements: newAchievements.length > 0 ? newAchievements : undefined,
+    }
   }
   catch (_error) {
     return createError({

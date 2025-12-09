@@ -1,5 +1,6 @@
 import { User } from '~~/server/models/User'
 import { Score } from '~~/server/models/Score'
+import { getUserAchievements } from '~~/server/utils/achievements'
 
 export default defineEventHandler(async (event) => {
   const session = await getUserSession(event)
@@ -41,6 +42,9 @@ export default defineEventHandler(async (event) => {
       ? scores.reduce((max, score) => score.accuracy > max ? score.accuracy : max, 0)
       : 0
 
+    // Get user achievements
+    const achievements = getUserAchievements(user.achievements || [])
+
     return {
       user: {
         id: user._id,
@@ -52,6 +56,9 @@ export default defineEventHandler(async (event) => {
         createdAt: user.createdAt,
         lastLoginAt: user.lastLoginAt,
         settings: user.settings,
+        level: user.level || 1,
+        experience: user.experience || 0,
+        achievements: achievements,
       },
       statistics: {
         totalTests,
