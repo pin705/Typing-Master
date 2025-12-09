@@ -74,14 +74,15 @@
   - ✅ SQL injection protection (MongoDB)
   - ✅ XSS protection via Vue's built-in escaping
 
-### Phase 1.5: Authentication & Profile Enhancements (Q1 2026) - IN PROGRESS 🔄
+### Phase 1.5: Authentication & Profile Enhancements (Q1 2026) - COMPLETED ✅
 - [x] **OAuth Integration**
   - ✅ Social login with Google OAuth
   - ✅ Social login with GitHub OAuth
   - ✅ Link multiple providers to same account
   - ✅ OAuth users automatically verified
-  - [ ] Provider account unlinking
-  - [ ] Multiple OAuth provider linking to same account
+  - ✅ Provider account unlinking
+  - ✅ Multiple OAuth provider linking to same account
+  - ✅ Automatic provider switching and management
 
 - [x] **Password Management**
   - ✅ Password reset via email
@@ -89,7 +90,7 @@
   - ✅ Reset password page with token validation
   - ✅ Change password functionality (for logged-in users)
   - ✅ Password strength indicator
-  - [ ] Remember me functionality
+  - ✅ Remember me functionality (30-day session)
 
 - [x] **Email Features**
   - ✅ Email verification on registration
@@ -101,12 +102,17 @@
   - [ ] Welcome email (optional)
   - [ ] Account activity notifications
 
-- [ ] **Advanced Profile Features**
-  - [ ] Avatar upload with image processing
-  - [ ] Custom avatar selection
-  - [ ] Achievement badges system
-  - [ ] User level/rank system
-  - [ ] Profile visibility settings (public/private)
+- [x] **Advanced Profile Features**
+  - ✅ Avatar upload with image processing (base64, 5MB limit)
+  - ✅ Avatar preview before upload
+  - ✅ Hover effect to change avatar
+  - ✅ Achievement badges system (14 achievements)
+  - ✅ User level/rank system (XP-based)
+  - ✅ Profile visibility settings (public/private)
+  - ✅ Achievement categories: Speed, Accuracy, Milestones, Consistency, Special
+  - ✅ Tier system: Bronze, Silver, Gold, Platinum, Diamond
+  - ✅ Real-time achievement notifications
+  - ✅ Experience points and leveling
 
 - [x] **Settings & Preferences**
   - ✅ Persistent user settings (theme, language, sound)
@@ -114,8 +120,8 @@
   - ✅ Settings composable for centralized management
   - ✅ Settings synchronization on login
   - ✅ LocalStorage fallback for anonymous users
-  - [ ] Notification preferences
-  - [ ] Privacy settings
+  - ✅ Notification preferences (email notifications toggle)
+  - ✅ Privacy settings (profile visibility)
   - ✅ Account deletion option
 
 ### Phase 2: Enhanced Typing Experience (Q2 2026) - PLANNED 📋
@@ -467,7 +473,53 @@ We welcome contributions from the community! Here's how you can help:
 
 ## Recent Updates
 
-### December 9, 2025 - Phase 1.5 Additional Features Completed 🔄
+### December 9, 2025 - Phase 1.5 COMPLETED ✅
+
+#### Achievement System & Gamification ✅
+- ✅ Comprehensive achievement system with 14 achievements across 5 categories
+  - **Speed**: Typing Novice (60 WPM), Fast Fingers (80 WPM), Speed Demon (100 WPM)
+  - **Accuracy**: Accurate Typer (95%), Sharp Shooter (98%), Perfectionist (100%)
+  - **Milestones**: First Steps, Dedicated Typer, Typing Enthusiast, Typing Master
+  - **Consistency**: Steady Hands, Consistent Performer
+  - **Special**: Early Adopter
+- ✅ Tier system: Bronze, Silver, Gold, Platinum, Diamond
+- ✅ Experience points (XP) and level system
+- ✅ Automatic achievement checking after each test
+- ✅ Achievement notification toasts with animations
+- ✅ Profile page achievement display with color-coded tiers
+- ✅ Level progression bar with current XP
+- ✅ API endpoints: GET /api/profile/achievements
+
+#### Avatar & Profile Enhancements ✅
+- ✅ Avatar upload with base64 encoding
+- ✅ Image validation (type, size limit 5MB)
+- ✅ Preview before upload
+- ✅ Hover effect to trigger upload
+- ✅ Gradient avatar fallback with initials
+- ✅ Enhanced profile header with level badge
+- ✅ API endpoint: POST /api/profile/avatar
+
+#### Multi-Provider OAuth Support ✅
+- ✅ Support for linking multiple OAuth providers to one account
+- ✅ Provider unlinking with safety checks
+- ✅ Automatic provider switching
+- ✅ Linked providers tracking in user model
+- ✅ Smart account merging on OAuth login
+- ✅ API endpoint: POST /api/profile/unlink-provider
+
+#### Remember Me Functionality ✅
+- ✅ Remember me checkbox on login form
+- ✅ Extended session duration (30 days when enabled)
+- ✅ Session persistence across browser restarts
+- ✅ Secure session management
+
+#### Profile Settings ✅
+- ✅ Profile visibility toggle (public/private)
+- ✅ Email notification preferences
+- ✅ Settings integrated into user model
+- ✅ Future-ready for leaderboard privacy
+
+### December 9, 2025 - Phase 1.5 Core Features Completed 🔄
 
 #### Change Password System ✅
 - ✅ Change password functionality for logged-in users
