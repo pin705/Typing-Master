@@ -4,6 +4,8 @@ import { articles } from '~/data/articles'
 import { generateGuestUsername, getStoredUsername, setStoredUsername, hasCompletedSetup, markSetupCompleted } from '~/utils/username'
 
 const { t } = useI18n()
+const { isAuthenticated } = useAuth()
+const { settings: userSettings, loadSettings, updateSetting } = useUserSettings()
 
 const selectedTime = ref(60)
 const isCustomModalOpen = ref(false)
@@ -33,6 +35,21 @@ const settings = ref({
   sound: true,
 })
 
+// Watch for authentication changes to reload settings
+watch(isAuthenticated, async (authenticated) => {
+  if (authenticated) {
+    await loadSettings()
+    // Apply loaded settings
+    if (userSettings.value.nightMode !== settings.value.nightMode) {
+      settings.value.nightMode = userSettings.value.nightMode
+    }
+    if (userSettings.value.soundEnabled !== settings.value.sound) {
+      settings.value.sound = userSettings.value.soundEnabled
+      isSoundEnabled.value = userSettings.value.soundEnabled
+    }
+  }
+})
+
 // Watch for finish to save score
 watch(isFinished, async (finished) => {
   if (finished) {
@@ -55,11 +72,15 @@ watch(isFinished, async (finished) => {
   }
 })
 
-const handleToggleSetting = (key: string, value: boolean) => {
+const handleToggleSetting = async (key: string, value: boolean) => {
   // @ts-expect-error - dynamic key access
   settings.value[key] = value
   if (key === 'sound') {
     isSoundEnabled.value = value
+    await updateSetting('soundEnabled', value)
+  }
+  else if (key === 'nightMode') {
+    await updateSetting('nightMode', value)
   }
 }
 
@@ -135,6 +156,18 @@ const handleSetupSkip = async () => {
 onMounted(async () => {
   if (articles[0]) {
     setText(articles[0].content)
+  }
+
+  // Load user settings
+  await loadSettings()
+  
+  // Apply loaded settings
+  if (userSettings.value.nightMode !== settings.value.nightMode) {
+    settings.value.nightMode = userSettings.value.nightMode
+  }
+  if (userSettings.value.soundEnabled !== settings.value.sound) {
+    settings.value.sound = userSettings.value.soundEnabled
+    isSoundEnabled.value = userSettings.value.soundEnabled
   }
 
   // Check if user has completed setup before (client-side only)

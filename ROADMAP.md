@@ -87,8 +87,8 @@
   - ✅ Password reset via email
   - ✅ Forgot password functionality
   - ✅ Reset password page with token validation
-  - [ ] Change password functionality (for logged-in users)
-  - [ ] Password strength indicator
+  - ✅ Change password functionality (for logged-in users)
+  - ✅ Password strength indicator
   - [ ] Remember me functionality
 
 - [x] **Email Features**
@@ -108,11 +108,15 @@
   - [ ] User level/rank system
   - [ ] Profile visibility settings (public/private)
 
-- [ ] **Settings & Preferences**
-  - [ ] Persistent user settings (theme, language, sound)
+- [x] **Settings & Preferences**
+  - ✅ Persistent user settings (theme, language, sound)
+  - ✅ Settings API endpoint
+  - ✅ Settings composable for centralized management
+  - ✅ Settings synchronization on login
+  - ✅ LocalStorage fallback for anonymous users
   - [ ] Notification preferences
   - [ ] Privacy settings
-  - [ ] Account deletion option
+  - ✅ Account deletion option
 
 ### Phase 2: Enhanced Typing Experience (Q2 2026) - PLANNED 📋
 - [ ] **Typing Lessons System**
@@ -459,9 +463,49 @@ We welcome contributions from the community! Here's how you can help:
 *This roadmap is a living document and will be updated regularly to reflect the current state and future plans of the project.*
 
 ---
-*Last updated: December 8, 2025*
+*Last updated: December 9, 2025*
 
 ## Recent Updates
+
+### December 9, 2025 - Phase 1.5 Additional Features Completed 🔄
+
+#### Change Password System ✅
+- ✅ Change password functionality for logged-in users
+- ✅ Password strength indicator with real-time feedback
+- ✅ Current password verification
+- ✅ Password confirmation validation
+- ✅ OAuth account detection (disable for OAuth users)
+- ✅ API endpoint: POST /api/auth/change-password
+
+#### Account Deletion ✅
+- ✅ Account deletion with confirmation dialog
+- ✅ Password verification for local accounts
+- ✅ Complete data cleanup (user + scores)
+- ✅ "DELETE" confirmation typing requirement
+- ✅ Automatic logout and redirect after deletion
+- ✅ API endpoint: DELETE /api/profile/delete-account
+
+#### User Settings Persistence ✅
+- ✅ Persistent user settings (theme, language, sound)
+- ✅ Settings API endpoint: PUT /api/profile/settings
+- ✅ Settings composable (useUserSettings) for centralized management
+- ✅ Automatic settings sync on login/logout
+- ✅ LocalStorage fallback for anonymous users
+- ✅ Real-time settings synchronization with database
+- ✅ Settings loaded on page mount and auth changes
+
+#### Profile Page Enhancements ✅
+- ✅ Account Settings section added to profile
+- ✅ Change Password modal with strength indicator
+- ✅ Delete Account modal with safety checks
+- ✅ Danger Zone section for destructive actions
+- ✅ Provider-aware UI (hide password change for OAuth)
+
+#### Utilities & Helpers ✅
+- ✅ Password strength calculator (passwordStrength.ts)
+- ✅ Real-time password strength feedback
+- ✅ Color-coded strength indicators (red to green)
+- ✅ Detailed validation messages
 
 ### December 8, 2025 - Phase 1.5 Core Features Implemented 🔄
 
@@ -565,11 +609,9 @@ We welcome contributions from the community! Here's how you can help:
 - ✅ .env.example template created
 
 #### Next Steps (Phase 1.5 - Remaining)
-- ⏭️ Change password functionality (for logged-in users)
 - ⏭️ Avatar upload with image processing
 - ⏭️ Achievement badges system
 - ⏭️ Profile visibility settings
-- ⏭️ User settings persistence (theme, language, sound)
 - ⏭️ Account deletion option
 - 🔄 Avatar upload - Medium Priority
 - 🔄 Achievement badges - Lower Priority
