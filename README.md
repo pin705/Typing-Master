@@ -21,7 +21,7 @@ A modern, feature-rich typing practice application built with **Nuxt 3** and **T
   - ✅ Register and login with email/password
   - ✅ Secure session management
   - ✅ Password validation and hashing
-  - 📋 OAuth (Google, GitHub) - Coming in Phase 1.5
+  - ✅ Logout functionality
 - **User Profiles**: 
   - ✅ Personal statistics dashboard
   - ✅ Historical performance tracking (last 10 tests)
@@ -34,6 +34,25 @@ A modern, feature-rich typing practice application built with **Nuxt 3** and **T
 - **Multi-language Support**: 
   - ✅ English, Vietnamese, and Chinese interfaces
   - ✅ Language-specific typing content
+
+### Phase 1.5 Features (✅ COMPLETED)
+- **OAuth Integration**:
+  - ✅ Google OAuth 2.0 authentication
+  - ✅ GitHub OAuth authentication
+  - ✅ Automatic account linking
+  - ✅ Pre-verified OAuth users
+- **Password Management**:
+  - ✅ Forgot password functionality
+  - ✅ Password reset via email
+  - ✅ Secure token-based reset system
+- **Email Verification**:
+  - ✅ Email verification on registration
+  - ✅ Resend verification email
+  - ✅ Token-based verification system
+- **Email Service**:
+  - ✅ Professional HTML email templates
+  - ✅ NodeMailer integration
+  - ✅ SMTP configuration support
 
 ## Tech Stack
 
@@ -72,9 +91,17 @@ A modern, feature-rich typing practice application built with **Nuxt 3** and **T
    ```
    
    Edit `.env` and configure:
-   - `MONGODB_URI`: Your MongoDB connection string (optional)
+   - `MONGODB_URI`: Your MongoDB connection string (optional, but required for auth)
    - `NUXT_SESSION_PASSWORD`: A secure random string for session encryption (required for auth)
-   - OAuth credentials (optional)
+   - `NUXT_PUBLIC_SITE_URL`: Your application URL (default: http://localhost:3000)
+   - OAuth credentials (optional):
+     - `NUXT_OAUTH_GOOGLE_CLIENT_ID` and `NUXT_OAUTH_GOOGLE_CLIENT_SECRET`
+     - `NUXT_OAUTH_GITHUB_CLIENT_ID` and `NUXT_OAUTH_GITHUB_CLIENT_SECRET`
+   - Email service configuration (optional, for password reset and verification):
+     - `NUXT_SMTP_HOST`: Your SMTP server (default: smtp.gmail.com)
+     - `NUXT_SMTP_PORT`: SMTP port (default: 587)
+     - `NUXT_SMTP_USER`: Your email address
+     - `NUXT_SMTP_PASS`: Your email password or app-specific password
 
 4. Start the development server:
    ```bash

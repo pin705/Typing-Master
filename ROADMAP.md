@@ -74,37 +74,45 @@
   - ✅ SQL injection protection (MongoDB)
   - ✅ XSS protection via Vue's built-in escaping
 
-### Phase 1.5: Authentication & Profile Enhancements (Q1 2026) - PLANNED 📋
-- [ ] **OAuth Integration**
-  - Social login with Google OAuth
-  - Social login with GitHub OAuth
-  - Link multiple providers to same account
-  - Provider migration support
+### Phase 1.5: Authentication & Profile Enhancements (Q1 2026) - IN PROGRESS 🔄
+- [x] **OAuth Integration**
+  - ✅ Social login with Google OAuth
+  - ✅ Social login with GitHub OAuth
+  - ✅ Link multiple providers to same account
+  - ✅ OAuth users automatically verified
+  - [ ] Provider account unlinking
+  - [ ] Multiple OAuth provider linking to same account
 
-- [ ] **Password Management**
-  - Password reset via email
-  - Change password functionality
-  - Password strength indicator
-  - Remember me functionality
+- [x] **Password Management**
+  - ✅ Password reset via email
+  - ✅ Forgot password functionality
+  - ✅ Reset password page with token validation
+  - [ ] Change password functionality (for logged-in users)
+  - [ ] Password strength indicator
+  - [ ] Remember me functionality
 
-- [ ] **Email Features**
-  - Email verification on registration
-  - Welcome email
-  - Password reset email
-  - Account activity notifications
+- [x] **Email Features**
+  - ✅ Email verification on registration
+  - ✅ Email verification page
+  - ✅ Resend verification email
+  - ✅ Password reset email
+  - ✅ Email service integration (NodeMailer)
+  - ✅ Professional HTML email templates
+  - [ ] Welcome email (optional)
+  - [ ] Account activity notifications
 
 - [ ] **Advanced Profile Features**
-  - Avatar upload with image processing
-  - Custom avatar selection
-  - Achievement badges system
-  - User level/rank system
-  - Profile visibility settings (public/private)
+  - [ ] Avatar upload with image processing
+  - [ ] Custom avatar selection
+  - [ ] Achievement badges system
+  - [ ] User level/rank system
+  - [ ] Profile visibility settings (public/private)
 
 - [ ] **Settings & Preferences**
-  - Persistent user settings (theme, language, sound)
-  - Notification preferences
-  - Privacy settings
-  - Account deletion option
+  - [ ] Persistent user settings (theme, language, sound)
+  - [ ] Notification preferences
+  - [ ] Privacy settings
+  - [ ] Account deletion option
 
 ### Phase 2: Enhanced Typing Experience (Q2 2026) - PLANNED 📋
 - [ ] **Typing Lessons System**
@@ -455,6 +463,64 @@ We welcome contributions from the community! Here's how you can help:
 
 ## Recent Updates
 
+### December 8, 2025 - Phase 1.5 Core Features Implemented 🔄
+
+#### OAuth Integration ✅
+- ✅ Google OAuth 2.0 authentication
+- ✅ GitHub OAuth authentication  
+- ✅ Automatic account linking for existing email addresses
+- ✅ OAuth users pre-verified (no email verification needed)
+- ✅ Social login buttons in AuthModal
+- ✅ Secure OAuth callback handling
+
+#### Password Reset System ✅
+- ✅ Forgot password functionality
+- ✅ Password reset token generation and validation
+- ✅ Secure token hashing with SHA-256
+- ✅ Password reset email with HTML template
+- ✅ Reset password page with validation
+- ✅ Token expiration (1 hour)
+- ✅ "Forgot Password?" link in login modal
+
+#### Email Verification ✅
+- ✅ Email verification on registration
+- ✅ Verification token generation and validation
+- ✅ Verification email with HTML template
+- ✅ Email verification page
+- ✅ Resend verification email functionality
+- ✅ Token expiration (24 hours)
+- ✅ OAuth users automatically verified
+
+#### Email Service ✅
+- ✅ NodeMailer integration
+- ✅ Professional HTML email templates
+- ✅ Password reset email template
+- ✅ Email verification template
+- ✅ SMTP configuration support
+- ✅ Gmail and custom SMTP support
+
+#### API Endpoints (New)
+- ✅ GET /api/auth/google - Google OAuth callback
+- ✅ GET /api/auth/github - GitHub OAuth callback
+- ✅ POST /api/auth/forgot-password - Request password reset
+- ✅ POST /api/auth/reset-password - Reset password with token
+- ✅ POST /api/auth/verify-email - Verify email with token
+- ✅ POST /api/auth/resend-verification - Resend verification email
+
+#### Database Models (Updated)
+- ✅ User model with email verification fields
+- ✅ PasswordResetToken model for secure token storage
+- ✅ Token expiration tracking
+- ✅ OAuth provider support (google, github, local)
+
+#### UI Components (New)
+- ✅ Forgot password page (/forgot-password)
+- ✅ Reset password page (/reset-password)
+- ✅ Email verification page (/verify-email)
+- ✅ Social login buttons (Google, GitHub)
+- ✅ "Forgot Password?" link in login
+- ✅ Dark mode support for all new pages
+
 ### December 8, 2025 - Phase 1 Core Implementation Completed ✅
 
 #### Authentication System
@@ -498,9 +564,12 @@ We welcome contributions from the community! Here's how you can help:
 - ✅ ROADMAP updated with detailed progress
 - ✅ .env.example template created
 
-#### Next Steps (Phase 1.5)
-- 🔄 OAuth providers (Google, GitHub) - **High Priority**
-- 🔄 Password reset functionality - **High Priority**
-- 🔄 Email verification - Medium Priority
+#### Next Steps (Phase 1.5 - Remaining)
+- ⏭️ Change password functionality (for logged-in users)
+- ⏭️ Avatar upload with image processing
+- ⏭️ Achievement badges system
+- ⏭️ Profile visibility settings
+- ⏭️ User settings persistence (theme, language, sound)
+- ⏭️ Account deletion option
 - 🔄 Avatar upload - Medium Priority
 - 🔄 Achievement badges - Lower Priority

@@ -10,6 +10,18 @@ export default defineNuxtConfig({
   ],
   devtools: { enabled: true },
   compatibilityDate: '2025-07-15',
+  runtimeConfig: {
+    // Private keys (server-side only)
+    smtpHost: process.env.NUXT_SMTP_HOST || 'smtp.gmail.com',
+    smtpPort: process.env.NUXT_SMTP_PORT || '587',
+    smtpSecure: process.env.NUXT_SMTP_SECURE || 'false',
+    smtpUser: process.env.NUXT_SMTP_USER || '',
+    smtpPass: process.env.NUXT_SMTP_PASS || '',
+    public: {
+      // Public keys (client-side accessible)
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3000',
+    },
+  },
   eslint: {
     config: {
       stylistic: true, // <---
