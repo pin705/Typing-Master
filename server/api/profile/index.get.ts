@@ -48,6 +48,7 @@ export default defineEventHandler(async (event) => {
         username: user.username,
         avatar: user.avatar,
         bio: user.bio,
+        provider: user.provider,
         createdAt: user.createdAt,
         lastLoginAt: user.lastLoginAt,
         settings: user.settings,
