@@ -38,6 +38,21 @@ export const User = defineMongooseModel({
       type: String,
       default: '',
     },
+    // Support for multiple linked OAuth providers
+    linkedProviders: {
+      type: [{
+        provider: {
+          type: String,
+          enum: ['google', 'github'],
+        },
+        providerId: String,
+        linkedAt: {
+          type: Date,
+          default: Date.now,
+        },
+      }],
+      default: [],
+    },
     emailVerified: {
       type: Boolean,
       default: false,
@@ -54,6 +69,22 @@ export const User = defineMongooseModel({
       type: Date,
       default: Date.now,
     },
+    // Achievement tracking
+    achievements: {
+      type: [{
+        type: String,
+      }],
+      default: [],
+    },
+    // User level and experience
+    level: {
+      type: Number,
+      default: 1,
+    },
+    experience: {
+      type: Number,
+      default: 0,
+    },
     settings: {
       language: {
         type: String,
@@ -66,6 +97,15 @@ export const User = defineMongooseModel({
       nightMode: {
         type: Boolean,
         default: false,
+      },
+      profileVisibility: {
+        type: String,
+        enum: ['public', 'private'],
+        default: 'public',
+      },
+      emailNotifications: {
+        type: Boolean,
+        default: true,
       },
     },
   },
