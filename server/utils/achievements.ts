@@ -1,5 +1,5 @@
-import { User } from '~/server/models/User'
-import { Score } from '~/server/models/Score'
+import { User } from '~~/server/models/User'
+import { Score } from '~~/server/models/Score'
 
 // Achievement definitions
 export const ACHIEVEMENTS = {

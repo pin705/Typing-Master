@@ -1,5 +1,5 @@
-import { User } from '~/server/models/User'
-import { getAllAchievements, getUserAchievements } from '~/server/utils/achievements'
+import { User } from '~~/server/models/User'
+import { getAllAchievements, getUserAchievements } from '~~/server/utils/achievements'
 
 export default defineEventHandler(async (event) => {
   try {
