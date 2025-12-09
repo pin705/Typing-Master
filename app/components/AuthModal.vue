@@ -113,7 +113,15 @@
             class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             placeholder="••••••••"
           >
-          <div class="mt-2 text-right">
+          <div class="mt-2 flex items-center justify-between">
+            <label class="flex items-center cursor-pointer">
+              <input
+                v-model="loginForm.rememberMe"
+                type="checkbox"
+                class="h-4 w-4 rounded border-gray-300 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700"
+              >
+              <span class="ml-2 text-sm text-gray-700 dark:text-gray-300">Remember me</span>
+            </label>
             <NuxtLink
               to="/forgot-password"
               class="text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400"
@@ -213,6 +221,7 @@ const error = ref('')
 const loginForm = reactive({
   email: '',
   password: '',
+  rememberMe: false,
 })
 
 const registerForm = reactive({
@@ -235,7 +244,7 @@ const handleLogin = async () => {
   isLoading.value = true
   error.value = ''
 
-  const result = await login(loginForm.email, loginForm.password)
+  const result = await login(loginForm.email, loginForm.password, loginForm.rememberMe)
 
   if (result.success) {
     emit('success')

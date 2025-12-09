@@ -21,11 +21,11 @@ export const useAuth = () => {
     }
   }
 
-  const login = async (email: string, password: string) => {
+  const login = async (email: string, password: string, rememberMe: boolean = false) => {
     try {
       const data = await $fetch('/api/auth/login', {
         method: 'POST',
-        body: { email, password },
+        body: { email, password, rememberMe },
       })
       user.value = data
       return { success: true, user: data }

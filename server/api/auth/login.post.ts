@@ -4,7 +4,7 @@ import { verifyPassword } from '~~/server/utils/auth'
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
-    const { email, password } = body
+    const { email, password, rememberMe } = body
 
     // Validate required fields
     if (!email || !password) {
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
     user.lastLoginAt = new Date()
     await user.save()
 
-    // Set user session
+    // Set user session with extended maxAge if rememberMe is true
     await setUserSession(event, {
       user: {
         id: user._id.toString(),
@@ -52,6 +52,8 @@ export default defineEventHandler(async (event) => {
         username: user.username,
         avatar: user.avatar,
       },
+    }, {
+      maxAge: rememberMe ? 60 * 60 * 24 * 30 : undefined, // 30 days if remember me, otherwise default (session)
     })
 
     // Return user data (without password)
