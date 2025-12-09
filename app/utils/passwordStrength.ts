@@ -39,7 +39,15 @@ export function calculatePasswordStrength(password: string): PasswordStrength {
   if (!/[^a-zA-Z0-9]/.test(password)) {
     feedback.push('Add special characters')
   }
-  if (password.length >= 12 && /[a-z]/.test(password) && /[A-Z]/.test(password) && /[0-9]/.test(password) && /[^a-zA-Z0-9]/.test(password)) {
+  
+  // Check if password is strong (all criteria met)
+  const hasMinLength = password.length >= 12
+  const hasLowercase = /[a-z]/.test(password)
+  const hasUppercase = /[A-Z]/.test(password)
+  const hasNumber = /[0-9]/.test(password)
+  const hasSpecial = /[^a-zA-Z0-9]/.test(password)
+  
+  if (hasMinLength && hasLowercase && hasUppercase && hasNumber && hasSpecial) {
     feedback.push('Strong password!')
   }
 

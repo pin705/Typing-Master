@@ -13,12 +13,14 @@ export const useUserSettings = () => {
   // Load settings from database (for authenticated users)
   const loadSettings = async () => {
     if (!isAuthenticated.value) {
-      // Load from localStorage for non-authenticated users
-      const saved = localStorage.getItem('userSettings')
-      if (saved) {
+      // Load from localStorage for non-authenticated users (client-side only)
+      if (process.client) {
         try {
-          const parsed = JSON.parse(saved)
-          settings.value = { ...settings.value, ...parsed }
+          const saved = localStorage.getItem('userSettings')
+          if (saved) {
+            const parsed = JSON.parse(saved)
+            settings.value = { ...settings.value, ...parsed }
+          }
         }
         catch (error) {
           console.error('Failed to parse saved settings:', error)
@@ -53,8 +55,10 @@ export const useUserSettings = () => {
     settings.value = { ...settings.value, ...newSettings }
 
     if (!isAuthenticated.value) {
-      // Save to localStorage for non-authenticated users
-      localStorage.setItem('userSettings', JSON.stringify(settings.value))
+      // Save to localStorage for non-authenticated users (client-side only)
+      if (process.client) {
+        localStorage.setItem('userSettings', JSON.stringify(settings.value))
+      }
       return
     }
 

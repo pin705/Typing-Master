@@ -518,6 +518,7 @@ const showChangePasswordModal = ref(false)
 const passwordError = ref('')
 const passwordSuccess = ref('')
 const isChangingPassword = ref(false)
+const MIN_PASSWORD_STRENGTH_SCORE = 2 // Minimum score required (0-4 scale)
 const passwordForm = reactive({
   currentPassword: '',
   newPassword: '',
@@ -613,8 +614,8 @@ const handleChangePassword = async () => {
     return
   }
 
-  // Validate password strength (at least score 2)
-  if (passwordStrength.value.score < 2) {
+  // Validate password strength
+  if (passwordStrength.value.score < MIN_PASSWORD_STRENGTH_SCORE) {
     passwordError.value = 'Password is too weak. Please choose a stronger password.'
     return
   }

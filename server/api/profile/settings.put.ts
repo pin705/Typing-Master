@@ -15,6 +15,26 @@ export default defineEventHandler(async (event) => {
   const body = await readBody(event)
   const { language, soundEnabled, nightMode } = body
 
+  // Validate input
+  if (language !== undefined && typeof language !== 'string') {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Language must be a string',
+    })
+  }
+  if (soundEnabled !== undefined && typeof soundEnabled !== 'boolean') {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Sound enabled must be a boolean',
+    })
+  }
+  if (nightMode !== undefined && typeof nightMode !== 'boolean') {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Night mode must be a boolean',
+    })
+  }
+
   // Get user from database
   const user = await User.findOne({ email: session.user.email })
 
